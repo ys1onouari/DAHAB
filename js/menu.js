@@ -376,18 +376,32 @@ function removeFromCart(id) {
 
 /* --- WhatsApp --- */
 
+function generateTicket() {
+  const now = new Date();
+  const y = now.getFullYear();
+  const m = String(now.getMonth() + 1).padStart(2, '0');
+  const d = String(now.getDate()).padStart(2, '0');
+  const hh = String(now.getHours()).padStart(2, '0');
+  const mm = String(now.getMinutes()).padStart(2, '0');
+  const ss = String(now.getSeconds()).padStart(2, '0');
+  const rand = String(Math.floor(Math.random() * 100)).padStart(2, '0');
+  return `T-${y}${m}${d}-${hh}${mm}${ss}-${rand}`;
+}
+
 function orderWhatsApp(id) {
   const dish = MENU_DATA.find(d => d.id === id);
   if (!dish) return;
-  const msg = `Bonjour, je souhaite commander :\n\nPlat : ${dish.name}\nPrix : ${dish.price} DH\n\nMerci de confirmer la disponibilité.`;
+  const ticket = generateTicket();
+  const msg = `Bonjour,\n\nJe souhaite commander :\n\nPlat : ${dish.name}\nPrix : ${dish.price} DH\n\nTicket : ${ticket}\n\nMerci de confirmer la disponibilité.`;
   openWhatsApp(msg);
 }
 
 export function checkoutWhatsApp() {
   if (!cart.length) return;
+  const ticket = generateTicket();
   const lines = cart.map(c => `${c.qty}x ${c.name} — ${(c.price * c.qty).toFixed(2)} DH`).join('\n');
   const total = cart.reduce((s, c) => s + c.price * c.qty, 0);
-  const msg = `Bonjour, je souhaite commander :\n\n${lines}\n\nTotal : ${total.toFixed(2)} DH\n\nNom client :\nTéléphone :\n\nMerci de confirmer ma commande.`;
+  const msg = `Bonjour,\n\nJe souhaite commander :\n\n${lines}\n\nTotal : ${total.toFixed(2)} DH\n\nTicket : ${ticket}\n\nMerci de confirmer ma commande.`;
   openWhatsApp(msg);
 }
 
