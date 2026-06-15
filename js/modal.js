@@ -1,13 +1,9 @@
+import { t } from './i18n.js';
+
 const SVG = {
   warning: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>',
   info: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>',
   edit: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>',
-};
-
-const t = {
-  confirm: 'Confirmer',
-  cancel: 'Annuler',
-  ok: 'OK',
 };
 
 function _showModal({ icon, title, message, input, confirmText, cancelText, showCancel }) {
@@ -63,35 +59,35 @@ function _showModal({ icon, title, message, input, confirmText, cancelText, show
   });
 }
 
-export function showConfirm(message, title = 'Confirmation') {
+export function showConfirm(message, title) {
   return _showModal({
     icon: SVG.warning,
-    title,
+    title: title || t('modal.confirmTitle'),
     message,
-    confirmText: t.confirm,
-    cancelText: t.cancel,
+    confirmText: t('modal.confirm'),
+    cancelText: t('modal.cancel'),
     showCancel: true,
   });
 }
 
-export function showAlert(message, title = 'Information') {
+export function showAlert(message, title) {
   return _showModal({
     icon: SVG.info,
-    title,
+    title: title || t('modal.alertTitle'),
     message,
-    confirmText: t.ok,
+    confirmText: t('modal.ok'),
     showCancel: false,
   });
 }
 
-export function showPrompt(message, defaultValue = '', title = 'Saisie') {
+export function showPrompt(message, defaultValue = '', title) {
   return _showModal({
     icon: SVG.edit,
-    title,
+    title: title || t('modal.promptTitle'),
     message,
     input: defaultValue,
-    confirmText: t.confirm,
-    cancelText: t.cancel,
+    confirmText: t('modal.confirm'),
+    cancelText: t('modal.cancel'),
     showCancel: true,
   });
 }
