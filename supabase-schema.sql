@@ -91,13 +91,13 @@ CREATE POLICY "Auth write" ON settings
 -- =====================================
 
 INSERT INTO categories (name, icon_svg, sort_order) VALUES
-  ('{"fr":"Entrées","en":"Starters","es":"Entrantes"}',         '<svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>', 1),
-  ('{"fr":"Salades","en":"Salads","es":"Ensaladas"}',           '<svg viewBox="0 0 24 24"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M8 12h8"/><path d="M12 8v8"/></svg>', 2),
-  ('{"fr":"Plats Principaux","en":"Main Courses","es":"Platos Principales"}', '<svg viewBox="0 0 24 24"><path d="M3 7v10a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V7"/><path d="M3 7a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2"/><line x1="12" y1="5" x2="12" y2="19"/></svg>', 3),
-  ('{"fr":"Fruits de Mer","en":"Seafood","es":"Mariscos"}',     '<svg viewBox="0 0 24 24"><path d="M2 16s3-7 10-7 10 7 10 7"/><circle cx="12" cy="9" r="3"/><path d="M12 12v10"/><path d="M8 22h8"/></svg>', 4),
-  ('{"fr":"Grillades","en":"Grilled Dishes","es":"Parrilladas"}','<svg viewBox="0 0 24 24"><path d="M12 2v4"/><path d="M8 6h8"/><path d="M6 10c0-3 2.7-5 6-5s6 2 6 5"/><path d="M7 22l2-6h6l2 6"/><path d="M12 16v6"/><path d="M10 10v2"/><path d="M14 10v2"/></svg>', 5),
-  ('{"fr":"Desserts","en":"Desserts","es":"Postres"}',          '<svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-10 10h20A10 10 0 0 0 12 2z"/><path d="M5 14c2 4 5 6 7 6s5-2 7-6"/><path d="M8 9h8"/></svg>', 6),
-  ('{"fr":"Boissons","en":"Drinks","es":"Bebidas"}',            '<svg viewBox="0 0 24 24"><path d="M18 8h2a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2h-1.5"/><path d="M6 2L4 18c0 2.2 1.8 4 4 4h8c2.2 0 4-1.8 4-4L18 2"/><path d="M12 22v-8"/><path d="M8 10h8"/></svg>', 7);
+  ('{"fr":"Entrées","en":"Starters","es":"Entrantes","ar":"مقبلات"}',         '<svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>', 1),
+  ('{"fr":"Salades","en":"Salads","es":"Ensaladas","ar":"سلطات"}',           '<svg viewBox="0 0 24 24"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M8 12h8"/><path d="M12 8v8"/></svg>', 2),
+  ('{"fr":"Plats Principaux","en":"Main Courses","es":"Platos Principales","ar":"الأطباق الرئيسية"}', '<svg viewBox="0 0 24 24"><path d="M3 7v10a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V7"/><path d="M3 7a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2"/><line x1="12" y1="5" x2="12" y2="19"/></svg>', 3),
+  ('{"fr":"Fruits de Mer","en":"Seafood","es":"Mariscos","ar":"المأكولات البحرية"}',     '<svg viewBox="0 0 24 24"><path d="M2 16s3-7 10-7 10 7 10 7"/><circle cx="12" cy="9" r="3"/><path d="M12 12v10"/><path d="M8 22h8"/></svg>', 4),
+  ('{"fr":"Grillades","en":"Grilled Dishes","es":"Parrilladas","ar":"مشاوي"}','<svg viewBox="0 0 24 24"><path d="M12 2v4"/><path d="M8 6h8"/><path d="M6 10c0-3 2.7-5 6-5s6 2 6 5"/><path d="M7 22l2-6h6l2 6"/><path d="M12 16v6"/><path d="M10 10v2"/><path d="M14 10v2"/></svg>', 5),
+  ('{"fr":"Desserts","en":"Desserts","es":"Postres","ar":"حلويات"}',          '<svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-10 10h20A10 10 0 0 0 12 2z"/><path d="M5 14c2 4 5 6 7 6s5-2 7-6"/><path d="M8 9h8"/></svg>', 6),
+  ('{"fr":"Boissons","en":"Drinks","es":"Bebidas","ar":"مشروبات"}',            '<svg viewBox="0 0 24 24"><path d="M18 8h2a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2h-1.5"/><path d="M6 2L4 18c0 2.2 1.8 4 4 4h8c2.2 0 4-1.8 4-4L18 2"/><path d="M12 22v-8"/><path d="M8 10h8"/></svg>', 7);
 
 INSERT INTO menu_items (name, category_id, price, description, available, popular) VALUES
   ('{"fr":"Tartare de Thon","en":"Tuna Tartare","es":"Tartar de Atún"}',                    1, 18, '{"fr":"Thon frais à l'avocat, sauce yuzu et sésame torréfié.","en":"Fresh tuna with avocado, yuzu sauce and toasted sesame.","es":"Atún fresco con aguacate, salsa yuzu y sésamo tostado."}',                                                    TRUE,  TRUE),
@@ -136,4 +136,11 @@ INSERT INTO settings (key, value) VALUES
   ('phone_raw',           '+212524432100'),
   ('email',               'contact@fadaerif.ma'),
   ('instagram',           '@fadaerif.marrakech'),
-  ('wa_number',           '212661234567');
+   ('wa_number',           '212661234567');
+
+-- Ajouter la clé "ar" aux JSONB pour les nouvelles installations
+UPDATE categories SET name = name || '{"ar":""}' WHERE NOT (name ? 'ar');
+UPDATE menu_items SET name = name || '{"ar":""}' WHERE NOT (name ? 'ar');
+UPDATE menu_items SET description = description || '{"ar":""}' WHERE NOT (description ? 'ar');
+UPDATE settings SET value = value || '{"ar":""}' WHERE key IN ('restaurant_name', 'restaurant_subtitle') AND NOT (value ? 'ar');
+

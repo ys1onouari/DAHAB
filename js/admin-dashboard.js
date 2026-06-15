@@ -7,6 +7,7 @@ import { supabaseReady } from './supabase.js';
 import { loadMenuData, renderFeatured, renderFilterChips, renderMenuGrid, renderContact, showToast } from './menu.js';
 import { showConfirm, showAlert } from './modal.js';
 import { t, localized } from './i18n.js';
+import { LANGUAGES } from './locales/config.js';
 
 /* --- Init --- */
 let items = [];
@@ -19,6 +20,29 @@ export async function initAdmin() {
 }
 
 function $(id) { return document.getElementById(id); }
+
+/* --- Helpers --- */
+function langFields(prefix, data, field) {
+  return LANGUAGES.map(lng => {
+    const val = data?.[field]?.[lng] ?? '';
+    const label = t(`admin.form${prefix}`) + ` (${lng.toUpperCase()})`;
+    const isTextarea = prefix === 'Description';
+    const tag = isTextarea ? 'textarea' : 'input';
+    const extra = isTextarea ? '' : 'type="text"';
+    return `<div class="form-group">
+      <label>${label}</label>
+      <${tag} name="${field}${lng.toUpperCase()}" ${extra} value="${isTextarea ? '' : val.replace(/"/g, '&quot;')}" ${lng === 'fr' ? 'required' : ''}>${isTextarea ? val : ''}</${tag}>
+    </div>`;
+  }).join('');
+}
+
+function buildJsonb(formData, field) {
+  const obj = {};
+  LANGUAGES.forEach(lng => {
+    obj[lng] = formData.get(field + lng.toUpperCase()) || '';
+  });
+  return obj;
+}
 
 /* --- Render --- */
 function renderAll() {
@@ -138,15 +162,7 @@ function itemFormHtml(item) {
   const isEdit = !!item;
   return `<h2>${isEdit ? t('admin.itemFormEdit') : t('admin.itemFormNew')}</h2>
     <form id="adminItemForm">
-      <div class="form-group">
-        <label>${t('admin.formName')} (FR)</label><input name="nameFr" value="${item?.name?.fr ?? ''}" required/>
-      </div>
-      <div class="form-group">
-        <label>${t('admin.formName')} (EN)</label><input name="nameEn" value="${item?.name?.en ?? ''}"/>
-      </div>
-      <div class="form-group">
-        <label>${t('admin.formName')} (ES)</label><input name="nameEs" value="${item?.name?.es ?? ''}"/>
-      </div>
+      ${langFields('Name', item, 'name')}
       <div class="form-row">
         <div class="form-group">
           <label>${t('admin.formCategory')}</label>
@@ -160,18 +176,7 @@ function itemFormHtml(item) {
           <input name="price" type="number" step="0.5" min="0" value="${item?.price ?? ''}" required/>
         </div>
       </div>
-      <div class="form-group">
-        <label>${t('admin.formDescription')} (FR)</label>
-        <textarea name="descFr">${item?.description?.fr ?? ''}</textarea>
-      </div>
-      <div class="form-group">
-        <label>${t('admin.formDescription')} (EN)</label>
-        <textarea name="descEn">${item?.description?.en ?? ''}</textarea>
-      </div>
-      <div class="form-group">
-        <label>${t('admin.formDescription')} (ES)</label>
-        <textarea name="descEs">${item?.description?.es ?? ''}</textarea>
-      </div>
+      ${langFields('Description', item, 'description')}
       <div class="form-row">
         <div class="form-group">
           <label>${t('admin.formImage')}</label>
@@ -200,9 +205,7 @@ function catFormHtml(cat) {
   const isEdit = !!cat;
   return `<h2>${isEdit ? t('admin.catFormEdit') : t('admin.catFormNew')}</h2>
     <form id="adminCatForm">
-      <div class="form-group"><label>${t('admin.formName')} (FR)</label><input name="nameFr" value="${cat?.name?.fr ?? ''}" required/></div>
-      <div class="form-group"><label>${t('admin.formName')} (EN)</label><input name="nameEn" value="${cat?.name?.en ?? ''}"/></div>
-      <div class="form-group"><label>${t('admin.formName')} (ES)</label><input name="nameEs" value="${cat?.name?.es ?? ''}"/></div>
+      ${langFields('Name', cat, 'name')}
       <div class="form-group"><label>${t('admin.formOrder')}</label><input name="sortOrder" type="number" min="0" value="${cat?.sort_order ?? ''}"/></div>
       <div class="form-actions">
         <button type="button" class="btn-cancel" data-admin-close>${t('admin.formCancel')}</button>
@@ -327,15 +330,11 @@ function setupItemForm(item) {
     const file = fd.get('image');
     if (file && file.size > 0) imageUrl = await uploadImage(file);
 
-    const name = { fr: fd.get('nameFr'), en: fd.get('nameEn'), es: fd.get('nameEs') };
-    const description = { fr: fd.get('descFr') || '', en: fd.get('descEn') || '', es: fd.get('descEs') || '' };
-    const categoryId = fd.get('categoryId') ? Number(fd.get('categoryId')) : null;
-
     const payload = {
-      name,
-      category_id: categoryId,
+      name: buildJsonb(fd, 'name'),
+      category_id: fd.get('categoryId') ? Number(fd.get('categoryId')) : null,
       price: Number(fd.get('price')),
-      description,
+      description: buildJsonb(fd, 'description'),
       available,
       image_url: imageUrl,
     };
@@ -353,10 +352,12 @@ function setupCatForm(cat) {
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
     const fd = new FormData(form);
-    const name = { fr: fd.get('nameFr'), en: fd.get('nameEn'), es: fd.get('nameEs') };
-    const sortOrder = fd.get('sortOrder') ? Number(fd.get('sortOrder')) : 0;
-    if (cat) await updateCategory(cat.id, { name, sort_order: sortOrder });
-    else await addCategory(name, '', sortOrder);
+    const payload = {
+      name: buildJsonb(fd, 'name'),
+      sort_order: fd.get('sortOrder') ? Number(fd.get('sortOrder')) : 0,
+    };
+    if (cat) await updateCategory(cat.id, payload);
+    else await addCategory(payload.name, '', payload.sort_order);
     closeModal();
     await refresh();
   });
@@ -377,28 +378,37 @@ async function refresh() {
 const XLSX_CDN = 'https://esm.sh/xlsx@0.18.5';
 
 function itemToRow(item) {
-  return {
-    'Nom (FR)': item.name?.fr || '',
-    'Nom (EN)': item.name?.en || '',
-    'Nom (ES)': item.name?.es || '',
-    'Catégorie': getCatName(item.category_id),
-    'Prix': item.price,
-    'Description (FR)': item.description?.fr || '',
-    'Description (EN)': item.description?.en || '',
-    'Description (ES)': item.description?.es || '',
-    'Disponible': item.available ? 'Oui' : 'Non',
-    'Populaire': item.popular ? 'Oui' : 'Non',
-  };
+  const row = {};
+  LANGUAGES.forEach(lng => {
+    const key = `Nom (${lng.toUpperCase()})`;
+    row[key] = item.name?.[lng] || '';
+  });
+  row['Catégorie'] = getCatName(item.category_id);
+  row['Prix'] = item.price;
+  LANGUAGES.forEach(lng => {
+    const key = `Description (${lng.toUpperCase()})`;
+    row[key] = item.description?.[lng] || '';
+  });
+  row['Disponible'] = item.available ? 'Oui' : 'Non';
+  row['Populaire'] = item.popular ? 'Oui' : 'Non';
+  return row;
+}
+
+function findColumn(keys, lang, label) {
+  const expected = `${label} (${lang.toUpperCase()})`;
+  if (keys.includes(expected)) return expected;
+  return null;
 }
 
 function rowToItem(row, idx) {
-  const nameFr = String(row['Nom (FR)'] || '').trim();
+  const keys = Object.keys(row);
+  const nameFr = String(row[findColumn(keys, 'fr', 'Nom') || 'Nom (FR)'] || '').trim();
   if (!nameFr) throw new Error(`Ligne ${idx + 1} : Nom (FR) manquant`);
-  const name = {
-    fr: nameFr,
-    en: String(row['Nom (EN)'] || '').trim(),
-    es: String(row['Nom (ES)'] || '').trim(),
-  };
+  const name = {};
+  LANGUAGES.forEach(lng => {
+    const col = findColumn(keys, lng, 'Nom');
+    name[lng] = col ? String(row[col] || '').trim() : '';
+  });
   const categoryName = String(row['Catégorie'] || '').trim();
   if (!categoryName) throw new Error(`Ligne ${idx + 1} : Catégorie manquante pour « ${nameFr} »`);
   const cat = cats.find(c => localized(c.name) === categoryName || c.name?.fr === categoryName);
@@ -407,11 +417,11 @@ function rowToItem(row, idx) {
   if (isNaN(price) || price <= 0) throw new Error(`Ligne ${idx + 1} : Prix invalide pour « ${nameFr} »`);
   const available = String(row['Disponible'] || 'Oui').toLowerCase() === 'oui';
   const popular = String(row['Populaire'] || 'Non').toLowerCase() === 'oui';
-  const description = {
-    fr: String(row['Description (FR)'] || ''),
-    en: String(row['Description (EN)'] || ''),
-    es: String(row['Description (ES)'] || ''),
-  };
+  const description = {};
+  LANGUAGES.forEach(lng => {
+    const col = findColumn(keys, lng, 'Description');
+    description[lng] = col ? String(row[col] || '') : '';
+  });
   return { name, category_id: cat.id, price, description, available, popular };
 }
 
@@ -483,23 +493,26 @@ async function importXLSX(file) {
 /* --- XLSX Catégories --- */
 
 function catToRow(cat) {
-  return {
-    'Nom (FR)': cat.name?.fr || '',
-    'Nom (EN)': cat.name?.en || '',
-    'Nom (ES)': cat.name?.es || '',
-    'Ordre': cat.sort_order ?? 0,
-  };
+  const row = {};
+  LANGUAGES.forEach(lng => {
+    const key = `Nom (${lng.toUpperCase()})`;
+    row[key] = cat.name?.[lng] || '';
+  });
+  row['Ordre'] = cat.sort_order ?? 0;
+  return row;
 }
 
 function rowToCat(row, idx) {
-  const nameFr = String(row['Nom (FR)'] || '').trim();
+  const keys = Object.keys(row);
+  const nameFr = String(row[findColumn(keys, 'fr', 'Nom') || 'Nom (FR)'] || '').trim();
   if (!nameFr) throw new Error(`Ligne ${idx + 1} : Nom (FR) manquant`);
+  const name = {};
+  LANGUAGES.forEach(lng => {
+    const col = findColumn(keys, lng, 'Nom');
+    name[lng] = col ? String(row[col] || '').trim() : '';
+  });
   return {
-    name: {
-      fr: nameFr,
-      en: String(row['Nom (EN)'] || '').trim(),
-      es: String(row['Nom (ES)'] || '').trim(),
-    },
+    name,
     sort_order: Number(row['Ordre']) || 0,
   };
 }

@@ -1,0 +1,230 @@
+/* ==========================================
+   RTL — Support for Arabic (and other RTL)
+   ========================================== */
+
+[dir="rtl"] body {
+  font-family: 'Tajawal', 'Noto Naskh Arabic', sans-serif;
+}
+
+[dir="rtl"] .desktop-nav-item {
+  font-family: 'Tajawal', 'Noto Naskh Arabic', 'Inter', sans-serif;
+}
+
+[dir="rtl"] .nav-item span {
+  font-family: 'Tajawal', 'Noto Naskh Arabic', 'Inter', sans-serif;
+}
+
+[dir="rtl"] .lang-switcher {
+  margin-right: 0;
+  margin-left: var(--space-sm);
+}
+
+[dir="rtl"] .lang-btn {
+  font-family: 'Tajawal', 'Noto Naskh Arabic', 'Inter', sans-serif;
+}
+
+[dir="rtl"] .cart-badge {
+  right: auto;
+  left: -2px;
+}
+
+[dir="rtl"] .cart-sidebar {
+  right: auto;
+  left: -100%;
+  border-left: none;
+  border-right: 1px solid var(--glass-border);
+  box-shadow: 8px 0 48px rgba(0, 0, 0, 0.5);
+}
+
+[dir="rtl"] .cart-sidebar.open {
+  left: 0;
+  right: auto;
+  animation-name: slideInRtl;
+}
+
+@keyframes slideInRtl {
+  from { transform: translateX(-100%); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+[dir="rtl"] .badge {
+  left: auto;
+  right: 12px;
+}
+
+[dir="rtl"] .auth-close {
+  right: auto;
+  left: var(--space-md);
+}
+
+[dir="rtl"] .admin-sidebar {
+  border-right: none;
+  border-left: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+[dir="rtl"] .admin-nav-item {
+  text-align: right;
+}
+
+[dir="rtl"] .admin-tbl th {
+  text-align: right;
+}
+
+[dir="rtl"] .admin-tbl td::before {
+  margin-left: 8px;
+  margin-right: 0;
+}
+
+[dir="rtl"] .admin-modal .form-actions {
+  justify-content: flex-start;
+}
+
+[dir="rtl"] .admin-logout {
+  font-family: 'Tajawal', 'Noto Naskh Arabic', 'Inter', sans-serif;
+}
+
+[dir="rtl"] .admin-nav-item {
+  font-family: 'Tajawal', 'Noto Naskh Arabic', 'Inter', sans-serif;
+}
+
+[dir="rtl"] .admin-btn-add,
+[dir="rtl"] .admin-btn-export,
+[dir="rtl"] .admin-btn-import {
+  font-family: 'Tajawal', 'Noto Naskh Arabic', 'Inter', sans-serif;
+}
+
+[dir="rtl"] .fadaerif-modal-btn {
+  font-family: 'Tajawal', 'Noto Naskh Arabic', 'Inter', sans-serif;
+}
+
+[dir="rtl"] .fadaerif-modal-field {
+  font-family: 'Tajawal', 'Noto Naskh Arabic', 'Inter', sans-serif;
+}
+
+[dir="rtl"] .auth-input {
+  font-family: 'Tajawal', 'Noto Naskh Arabic', 'Inter', sans-serif;
+}
+
+[dir="rtl"] .auth-btn {
+  font-family: 'Tajawal', 'Noto Naskh Arabic', 'Inter', sans-serif;
+}
+
+[dir="rtl"] .auth-title {
+  font-family: 'Tajawal', 'Noto Naskh Arabic', serif;
+}
+
+[dir="rtl"] .cart-title {
+  font-family: 'Tajawal', 'Noto Naskh Arabic', serif;
+}
+
+[dir="rtl"] .hero-title {
+  font-family: 'Tajawal', 'Noto Naskh Arabic', serif;
+}
+
+[dir="rtl"] .hero-eyebrow {
+  letter-spacing: 0.1em;
+}
+
+[dir="rtl"] .section-title {
+  font-family: 'Tajawal', 'Noto Naskh Arabic', serif;
+}
+
+[dir="rtl"] .dish-name {
+  font-family: 'Tajawal', 'Noto Naskh Arabic', serif;
+}
+
+[dir="rtl"] .dish-price {
+  font-family: 'Tajawal', 'Noto Naskh Arabic', serif;
+}
+
+[dir="rtl"] .cart-total-amount {
+  font-family: 'Tajawal', 'Noto Naskh Arabic', serif;
+}
+
+[dir="rtl"] .contact-info h3 {
+  font-family: 'Tajawal', 'Noto Naskh Arabic', serif;
+}
+
+[dir="rtl"] .google-review-score {
+  font-family: 'Tajawal', 'Noto Naskh Arabic', serif;
+}
+
+[dir="rtl"] .admin-view-header h1 {
+  font-family: 'Tajawal', 'Noto Naskh Arabic', serif;
+}
+
+[dir="rtl"] .admin-sidebar-header {
+  font-family: 'Tajawal', 'Noto Naskh Arabic', serif;
+}
+
+[dir="rtl"] .admin-modal h2 {
+  font-family: 'Tajawal', 'Noto Naskh Arabic', serif;
+}
+
+[dir="rtl"] .fadaerif-modal-title {
+  font-family: 'Tajawal', 'Noto Naskh Arabic', serif;
+}
+
+[dir="rtl"] .admin-modal .form-group label {
+  text-align: right;
+}
+
+[dir="rtl"] .admin-modal .form-group input,
+[dir="rtl"] .admin-modal .form-group select,
+[dir="rtl"] .admin-modal .form-group textarea {
+  text-align: right;
+}
+
+[dir="rtl"] .admin-table-wrap .form-group label {
+  text-align: right;
+}
+
+[dir="rtl"] .admin-table-wrap .form-group input {
+  text-align: right;
+}
+
+[dir="rtl"] .toggle::after {
+  left: auto;
+  right: 2px;
+}
+
+[dir="rtl"] .toggle.on::after {
+  transform: translateX(-16px);
+}
+
+[dir="rtl"] .admin-upload-label {
+  font-family: 'Tajawal', 'Noto Naskh Arabic', 'Inter', sans-serif;
+}
+
+/* RTL Toast positioning (desktop) */
+@media (min-width: 768px) {
+  [dir="rtl"] .toast {
+    left: 40px;
+    right: auto;
+  }
+}
+
+/* RTL Admin logout mobile */
+@media (max-width: 768px) {
+  [dir="rtl"] .admin-logout {
+    margin-left: 0;
+    margin-right: auto;
+  }
+
+  [dir="rtl"] .lang-switcher {
+    margin-right: var(--space-sm);
+    margin-left: auto;
+  }
+}
+
+/* Ensure hero tagline and buttons stay LTR in RTL mode */
+[dir="rtl"] .hero-tagline,
+[dir="rtl"] .hero-subtitle {
+  letter-spacing: 0.05em;
+}
+
+/* SVG icons that should not flip in RTL - they stay as-is */
+[dir="rtl"] .btn-primary svg {
+  /* Arrow icon on CTA button - keep pointing right */
+  transform: scaleX(-1);
+}

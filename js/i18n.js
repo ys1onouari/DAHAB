@@ -1,6 +1,7 @@
 import fr from './locales/fr.js';
 import en from './locales/en.js';
 import es from './locales/es.js';
+import ar from './locales/ar.js';
 
 let _i18n = null;
 let _ready = null;
@@ -23,6 +24,7 @@ function getClient() {
           fr: { translation: fr },
           en: { translation: en },
           es: { translation: es },
+          ar: { translation: ar },
         },
         interpolation: { escapeValue: false },
       });
@@ -44,6 +46,7 @@ export async function changeLanguage(lng) {
   await i18nReady;
   await _i18n.changeLanguage(lng);
   document.documentElement.lang = lng;
+  document.documentElement.dir = lng === 'ar' ? 'rtl' : 'ltr';
 }
 
 export async function getCurrentLanguage() {

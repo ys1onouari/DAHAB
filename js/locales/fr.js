@@ -137,6 +137,7 @@ export default {
     fr: 'Français',
     en: 'English',
     es: 'Español',
+    ar: 'العربية',
   },
   site: {
     description: 'RESTAURANT FADAE RIF · Menu Digital',
