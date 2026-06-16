@@ -253,3 +253,10 @@
     width: 100%;
   }
 }
+
+/* --- Contact --- */
+@media (max-width: 540px) {
+  .contact-grid {
+    grid-template-columns: 1fr;
+  }
+}
