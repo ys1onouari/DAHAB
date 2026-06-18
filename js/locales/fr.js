@@ -7,7 +7,7 @@ export default {
   },
   hero: {
     eyebrow: 'Bienvenue chez',
-    subtitle: 'SNACK',
+    subtitle: 'CAFÉ & RESTAURANT',
     taglineRif: 'FRESHLY SELECTED FROM THE SALE',
     tagline: 'CRISPY • FRESH • AUTHENTIC',
     cta: 'Découvrir le Menu',
@@ -65,7 +65,7 @@ export default {
     btnAdmin: 'Administration',
   },
   admin: {
-    title: 'RESTAURANT CHEF HAM&HAM',
+    title: 'RESTAURANT FADAE RIF',
     navItems: 'Plats',
     navCategories: 'Catégories',
     navConfig: 'Configuration',
@@ -146,8 +146,8 @@ export default {
     ar: 'العربية',
   },
   site: {
-    description: 'RESTAURANT CHEF HAM&HAM · Menu Digital',
-    title: 'RESTAURANT CHEF HAM&HAM · Restaurant Gastronomique',
+    description: 'RESTAURANT FADAE RIF · Menu Digital',
+    title: 'RESTAURANT FADAE RIF · Restaurant Gastronomique',
   },
   wa: {
     orderMsg: 'Bonjour,\n\nJe souhaite commander :\n\nPlat : {{name}}\nPrix : {{price}} DH\n\nTicket : {{ticket}}\n\nMerci de confirmer la disponibilité.',

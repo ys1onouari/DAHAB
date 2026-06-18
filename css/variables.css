@@ -1,82 +1,139 @@
-/* ==========================================
-   CHEF HAM&HAM — PREMIUM RED THEME
-   ========================================== */
+/* =====================================================
+   FADAE RIF — Premium Color System v2
+   Goal:
+   - Keep Moroccan identity
+   - Premium restaurant feel
+   - Remove fast-food orange feeling
+   - Better color harmony
+   - Luxury dark UI
+===================================================== */
 
 :root {
-  /* Brand Colors — Gold & Fire */
-  --primary: #D4AF37;
-  --primary-dark: #8C6A17;
-  --primary-light: #FFE08A;
+  /* ===== Brand ===== */
 
-  --secondary: #F25928;
-  --secondary-light: #FF7A47;
+  /* Primary Red */
+  --primary:         #B11217;
+  --primary-dark:    #6D0B0F;
+  --primary-light:   #D83A3F;
 
-  --accent: #D4AF37;
-  --accent-dim: rgba(212, 175, 55, 0.12);
+  /* Premium Gold */
+  --secondary:       #C79A3B;
+  --secondary-light: #E7C56A;
 
-  /* Backgrounds */
-  --bg: #090909;
-  --bg2: #121212;
-  --bg3: #1a1a1a;
-  --card: rgba(255, 255, 255, 0.04);
-  --card-hover: rgba(255, 255, 255, 0.07);
-  --glass: rgba(9, 9, 9, 0.75);
-  --glass-border: rgba(255, 255, 255, 0.08);
+  /* Accent */
+  --accent:          #F3D98A;
+  --accent-dim:      rgba(243,217,138,0.12);
 
-  /* Gold */
-  --gold: #D4AF37;
-  --gold2: #FFE08A;
-  --gold3: #8C6A17;
-  --gold-dim: rgba(212, 175, 55, 0.12);
+  /* ===== Backgrounds ===== */
 
-  /* New semantic aliases */
-  --bg-primary: var(--bg);
-  --text-primary: var(--text);
-  --bg-card: var(--card);
-  --border-gold: rgba(212, 175, 55, 0.25);
-  --gold-primary: #D4AF37;
-  --fire-orange: #F25928;
+  --bg:              #090909;
+  --bg2:             #121212;
+  --bg3:             #1A1A1A;
 
-  /* Text */
-  --text: #FFFFFF;
-  --text2: #D0D0D0;
-  --text3: #888888;
+  --card:            rgba(255,255,255,0.04);
+  --card-hover:      rgba(255,255,255,0.07);
 
-  /* Feedback */
-  --success: #3a9d5e;
-  --danger: #d4554a;
+  --glass:           rgba(9,9,9,0.78);
+  --glass-border:    rgba(231,197,106,0.10);
 
-  /* Space */
-  --space-xs: 4px;
-  --space-sm: 8px;
-  --space-md: 16px;
-  --space-lg: 24px;
-  --space-xl: 32px;
+  /* ===== Text ===== */
+
+  --text:            #FFFFFF;
+  --text2:           #D0D0D0;
+  --text3:           #888888;
+
+  /* ===== Status ===== */
+
+  --success:         #3A9D5E;
+  --danger:          #D4554A;
+  --warning:         #D4AF37;
+
+  /* ===== Borders ===== */
+
+  --border:          rgba(255,255,255,0.08);
+  --border-strong:   rgba(255,255,255,0.14);
+
+  /* ===== Gradients ===== */
+
+  --gradient-primary:
+    linear-gradient(
+      135deg,
+      #6D0B0F 0%,
+      #B11217 55%,
+      #C79A3B 100%
+    );
+
+  --gradient-accent:
+    linear-gradient(
+      135deg,
+      #C79A3B 0%,
+      #E7C56A 50%,
+      #F3D98A 100%
+    );
+
+  --gradient-dark:
+    linear-gradient(
+      180deg,
+      #090909 0%,
+      #121212 100%
+    );
+
+  /* ===== Shadows ===== */
+
+  --shadow-sm:
+    0 4px 16px rgba(0,0,0,0.25);
+
+  --shadow-md:
+    0 8px 32px rgba(0,0,0,0.40);
+
+  --shadow-lg:
+    0 16px 48px rgba(0,0,0,0.50);
+
+  --shadow-red:
+    0 0 40px rgba(177,18,23,0.18);
+
+  --shadow-gold:
+    0 0 40px rgba(199,154,59,0.15);
+
+  /* ===== Deprecated aliases (backward-compat) ===== */
+  --gold:            var(--accent);
+  --gold2:           var(--secondary-light);
+  --gold3:           var(--secondary);
+  --gold-dim:        var(--accent-dim);
+  --gold-primary:    var(--secondary);
+  --border-gold:     rgba(199,154,59,0.25);
+  --fire-orange:     var(--secondary);
+  --shadow-glow:     var(--shadow-red);
+  --primary-rgb:     177,18,23;
+  --accent-rgb:      243,217,138;
+
+  /* ===== Semantic aliases ===== */
+  --bg-primary:      var(--bg);
+  --text-primary:    var(--text);
+  --bg-card:         var(--card);
+
+  /* ===== Space ===== */
+  --space-xs:  4px;
+  --space-sm:  8px;
+  --space-md:  16px;
+  --space-lg:  24px;
+  --space-xl:  32px;
   --space-2xl: 48px;
   --space-3xl: 64px;
 
-  /* Radius */
-  --radius-md: 12px;
-  --radius-lg: 20px;
+  /* ===== Radius ===== */
+  --radius-md:   12px;
+  --radius-lg:   20px;
   --radius-full: 9999px;
 
-  /* Shadows */
-  --shadow-md: 0 8px 32px rgba(0, 0, 0, 0.4);
-  --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.5);
-  --shadow-glow: 0 0 40px rgba(212, 175, 55, 0.15);
-
-  /* Typography */
-  --text-xs: 0.75rem;
-  --text-sm: 0.875rem;
+  /* ===== Typography ===== */
+  --text-xs:   0.75rem;
+  --text-sm:   0.875rem;
   --text-base: 1rem;
-  --text-lg: 1.125rem;
-  --text-xl: 1.25rem;
-  --text-2xl: 1.5rem;
-  --text-3xl: 2rem;
-
-  /* Gradients */
-  --gradient-primary: linear-gradient(135deg, #8C6A17 0%, #D4AF37 45%, #FFE08A 100%);
-  --gradient-accent: linear-gradient(135deg, #D4AF37, #FFE08A);
+  --text-lg:   1.125rem;
+  --text-xl:   1.25rem;
+  --text-2xl:  1.5rem;
+  --text-3xl:  2rem;
 }
 
 @keyframes shimmer {
