@@ -45,12 +45,30 @@
 
 @media (max-width: 767px) {
   .hero {
-    padding-top: 50px;
+    padding-top: 40px;
     min-height: 100dvh;
   }
 
   .hero-content {
-    transform: translateY(-90px);
+    transform: translateY(-110px);
+    padding-bottom: 80px;
+  }
+
+  .hero-logo {
+    width: 170px !important;
+    margin-bottom: 16px !important;
+  }
+
+  .hero-eyebrow {
+    margin-bottom: 10px;
+  }
+
+  .hero-title {
+    margin-bottom: 4px;
+  }
+
+  .hero-subtitle {
+    margin-bottom: 20px;
   }
 }
 
