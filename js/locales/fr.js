@@ -8,6 +8,7 @@ export default {
   hero: {
     eyebrow: 'Bienvenue chez',
     subtitle: 'CAFÉ & RESTAURANT',
+    cta: 'Découvrir le Menu',
   },
   cart: {
     title: 'Votre commande',
