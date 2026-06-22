@@ -92,7 +92,7 @@ export function renderBranding() {
   const subtitleEl = $('heroSubtitle');
   const s = SETTINGS;
   if (titleEl) {
-    titleEl.textContent = s.restaurant_name || titleEl.textContent || 'FADAE RIF';
+    titleEl.textContent = s.restaurant_name || titleEl.textContent || 'SNACK AL MADINA';
   }
   if (subtitleEl && s.restaurant_subtitle) {
     subtitleEl.textContent = s.restaurant_subtitle;

@@ -1922,10 +1922,10 @@ body.admin-mode .bottom-nav { display: none; }
 body.admin-mode .page { padding-bottom: 0; }
 
 /* --- FADAE RIF Custom Modal (Confirm / Alert / Prompt) --- */
-.fadaerif-modal-overlay {
+.snackalmadina-modal-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.7);
+  background: rgba(0, 0, 0, 0.85);
   z-index: 999;
   display: flex;
   align-items: center;
@@ -1933,16 +1933,14 @@ body.admin-mode .page { padding-bottom: 0; }
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.3s ease;
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
 }
 
-.fadaerif-modal-overlay.open {
+.snackalmadina-modal-overlay.open {
   opacity: 1;
   pointer-events: all;
 }
 
-.fadaerif-modal {
+.snackalmadina-modal {
   background: var(--card);
   border: 1px solid rgba(199,154,59,0.12);
   border-radius: var(--radius-lg);
@@ -1955,11 +1953,11 @@ body.admin-mode .page { padding-bottom: 0; }
   overflow: hidden;
 }
 
-.fadaerif-modal-overlay.open .fadaerif-modal {
+.snackalmadina-modal-overlay.open .snackalmadina-modal {
   transform: scale(1) translateY(0);
 }
 
-.fadaerif-modal-accent {
+.snackalmadina-modal-accent {
   position: absolute;
   top: 0;
   left: 0;
@@ -1969,7 +1967,7 @@ body.admin-mode .page { padding-bottom: 0; }
   opacity: 0.6;
 }
 
-.fadaerif-modal-icon {
+.snackalmadina-modal-icon {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1979,14 +1977,15 @@ body.admin-mode .page { padding-bottom: 0; }
   border-radius: 50%;
   background: rgba(199,154,59,0.08);
   color: var(--secondary);
+  overflow: hidden;
 }
 
-.fadaerif-modal-icon svg {
+.snackalmadina-modal-icon svg {
   width: 24px;
   height: 24px;
 }
 
-.fadaerif-modal-title {
+.snackalmadina-modal-title {
   font-family: 'Playfair Display', serif;
   font-size: var(--text-xl);
   font-weight: 600;
@@ -1995,7 +1994,7 @@ body.admin-mode .page { padding-bottom: 0; }
   margin-bottom: var(--space-sm);
 }
 
-.fadaerif-modal-message {
+.snackalmadina-modal-message {
   font-size: var(--text-sm);
   color: var(--text2);
   text-align: center;
@@ -2003,11 +2002,11 @@ body.admin-mode .page { padding-bottom: 0; }
   margin-bottom: var(--space-lg);
 }
 
-.fadaerif-modal-input {
+.snackalmadina-modal-input {
   margin-bottom: var(--space-lg);
 }
 
-.fadaerif-modal-field {
+.snackalmadina-modal-field {
   width: 100%;
   background: var(--bg2);
   border: 1px solid rgba(199,154,59,0.12);
@@ -2021,18 +2020,18 @@ body.admin-mode .page { padding-bottom: 0; }
   box-sizing: border-box;
 }
 
-.fadaerif-modal-field:focus {
+.snackalmadina-modal-field:focus {
   border-color: var(--secondary);
   box-shadow: 0 0 0 3px rgba(199,154,59,0.12);
 }
 
-.fadaerif-modal-actions {
+.snackalmadina-modal-actions {
   display: flex;
   gap: var(--space-sm);
   justify-content: center;
 }
 
-.fadaerif-modal-btn {
+.snackalmadina-modal-btn {
   padding: 10px 24px;
   border-radius: var(--radius-full);
   font-size: var(--text-xs);
@@ -2046,24 +2045,24 @@ body.admin-mode .page { padding-bottom: 0; }
   min-width: 100px;
 }
 
-.fadaerif-modal-btn-confirm {
+.snackalmadina-modal-btn-confirm {
   background: var(--gradient-primary);
   color: #fff;
   font-weight: 600;
 }
 
-.fadaerif-modal-btn-confirm:hover {
+.snackalmadina-modal-btn-confirm:hover {
   box-shadow: 0 4px 20px rgba(199,154,59,0.3);
   transform: translateY(-1px);
 }
 
-.fadaerif-modal-btn-cancel {
+.snackalmadina-modal-btn-cancel {
   background: none;
   color: var(--text3);
   border: 1px solid rgba(128, 128, 128, 0.2);
 }
 
-.fadaerif-modal-btn-cancel:hover {
+.snackalmadina-modal-btn-cancel:hover {
   color: var(--text);
   border-color: rgba(128, 128, 128, 0.4);
   background: rgba(128, 128, 128, 0.06);

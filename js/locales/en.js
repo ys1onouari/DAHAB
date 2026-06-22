@@ -68,7 +68,7 @@ export default {
     btnAdmin: 'Administration',
   },
   admin: {
-    title: 'RESTAURANT FADAE RIF',
+    title: 'SNACK AL MADINA',
     navItems: 'Items',
     navCategories: 'Categories',
     navConfig: 'Settings',
@@ -160,8 +160,8 @@ export default {
     ar: 'العربية',
   },
   site: {
-    description: 'RESTAURANT FADAE RIF · Digital Menu',
-    title: 'RESTAURANT FADAE RIF · Fine Dining Restaurant',
+    description: 'SNACK AL MADINA · Digital Menu',
+    title: 'SNACK AL MADINA · Fine Dining Restaurant',
   },
   wa: {
     orderMsg: 'Hello,\n\nI would like to order:\n\nDish: {{name}}\nPrice: {{price}} MAD\n\nTicket: {{ticket}}\n\nPlease confirm availability.',

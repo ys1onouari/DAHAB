@@ -68,7 +68,7 @@ export default {
     btnAdmin: 'الإدارة',
   },
   admin: {
-    title: 'مطعم فداء الريف',
+    title: 'مطعم سناك المدينة',
     navItems: 'الأطباق',
     navCategories: 'التصنيفات',
     navConfig: 'الإعدادات',
@@ -160,8 +160,8 @@ export default {
     ar: 'العربية',
   },
   site: {
-    description: 'مطعم فداء الريف · القائمة الرقمية',
-    title: 'مطعم فداء الريف · مطعم راقي',
+    description: 'مطعم سناك المدينة · القائمة الرقمية',
+    title: 'مطعم سناك المدينة · مطعم راقي',
   },
   wa: {
     orderMsg: 'السلام عليكم،\n\nأود طلب:\n\nالطبق: {{name}}\nالسعر: {{price}} درهم\n\nالتذكرة: {{ticket}}\n\nيرجى تأكيد التوفر.',

@@ -484,7 +484,7 @@ async function exportXLSX() {
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = `fadaerif_plats_${new Date().toISOString().slice(0, 10)}.xlsx`;
+    a.download = `snackalmadina_plats_${new Date().toISOString().slice(0, 10)}.xlsx`;
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
@@ -571,7 +571,7 @@ async function exportCatsXLSX() {
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = `fadaerif_categories_${new Date().toISOString().slice(0, 10)}.xlsx`;
+    a.download = `snackalmadina_categories_${new Date().toISOString().slice(0, 10)}.xlsx`;
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);

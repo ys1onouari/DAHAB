@@ -1,38 +1,38 @@
 import { t } from './i18n.js';
 
 const SVG = {
-  warning: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>',
-  info: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>',
-  edit: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>',
+  warning: '<svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>',
+  info: '<svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>',
+  edit: '<svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>',
 };
 
 function _showModal({ icon, title, message, input, confirmText, cancelText, showCancel }) {
   return new Promise(resolve => {
-    const existing = document.querySelector('.fadaerif-modal-overlay');
+    const existing = document.querySelector('.snackalmadina-modal-overlay');
     if (existing) existing.remove();
 
     const overlay = document.createElement('div');
-    overlay.className = 'fadaerif-modal-overlay';
+    overlay.className = 'snackalmadina-modal-overlay';
     overlay.innerHTML = `
-      <div class="fadaerif-modal">
-        <div class="fadaerif-modal-accent"></div>
-        <div class="fadaerif-modal-icon">${icon}</div>
-        <div class="fadaerif-modal-title">${title}</div>
-        <div class="fadaerif-modal-message">${message}</div>
-        ${input !== undefined ? `<div class="fadaerif-modal-input"><input type="text" id="fadaerifModalInput" value="${input}" class="fadaerif-modal-field"/></div>` : ''}
-        <div class="fadaerif-modal-actions">
-          ${showCancel ? `<button class="fadaerif-modal-btn fadaerif-modal-btn-cancel">${cancelText}</button>` : ''}
-          <button class="fadaerif-modal-btn fadaerif-modal-btn-confirm">${confirmText}</button>
+      <div class="snackalmadina-modal">
+        <div class="snackalmadina-modal-accent"></div>
+        <div class="snackalmadina-modal-icon">${icon}</div>
+        <div class="snackalmadina-modal-title">${title}</div>
+        <div class="snackalmadina-modal-message">${message}</div>
+        ${input !== undefined ? `<div class="snackalmadina-modal-input"><input type="text" id="snackalmadinaModalInput" value="${input}" class="snackalmadina-modal-field"/></div>` : ''}
+        <div class="snackalmadina-modal-actions">
+          ${showCancel ? `<button class="snackalmadina-modal-btn snackalmadina-modal-btn-cancel">${cancelText}</button>` : ''}
+          <button class="snackalmadina-modal-btn snackalmadina-modal-btn-confirm">${confirmText}</button>
         </div>
       </div>`;
 
     document.body.appendChild(overlay);
     requestAnimationFrame(() => overlay.classList.add('open'));
 
-    const modal = overlay.querySelector('.fadaerif-modal');
-    const confirmBtn = modal.querySelector('.fadaerif-modal-btn-confirm');
-    const cancelBtn = modal.querySelector('.fadaerif-modal-btn-cancel');
-    const inputEl = modal.querySelector('#fadaerifModalInput');
+    const modal = overlay.querySelector('.snackalmadina-modal');
+    const confirmBtn = modal.querySelector('.snackalmadina-modal-btn-confirm');
+    const cancelBtn = modal.querySelector('.snackalmadina-modal-btn-cancel');
+    const inputEl = modal.querySelector('#snackalmadinaModalInput');
 
     if (inputEl) setTimeout(() => inputEl.focus(), 200);
 
