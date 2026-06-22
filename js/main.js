@@ -1,4 +1,4 @@
-import { initMenu, showPage } from './menu.js';
+import { initMenu, showPage, loadSettings } from './menu.js';
 import { initNavigation } from './navigation.js';
 import { login } from './auth.js';
 import { supabaseReady } from './supabase.js';
@@ -7,8 +7,15 @@ import { $ } from './helpers.js';
 import { LOCK_KEY } from './constants.js';
 
 document.addEventListener('DOMContentLoaded', async () => {
+  console.time('total');
+  console.time('i18nReady');
+  const earlySettings = loadSettings();
   await i18nReady;
+  console.timeEnd('i18nReady');
   translatePage();
+  console.time('settingsRemaining');
+  await earlySettings;
+  console.timeEnd('settingsRemaining');
 
   document.querySelectorAll('[data-i18n-lang]').forEach(btn => {
     btn.addEventListener('click', async () => {
@@ -32,6 +39,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
   initNavigation();
   initAuth();
+  console.timeEnd('total');
 });
 
 /* ============================================

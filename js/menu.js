@@ -11,6 +11,27 @@ let CATEGORY_MAP = new Map();
 let LOAD_STATUS = 'success';
 let MENU_CACHE = { data: null, settings: null };
 
+const SETTINGS_CACHE_KEY = 'fadaerif_settings_cache';
+const SETTINGS_CACHE_TTL = 300000;
+
+function getCachedSettings() {
+  try {
+    const raw = localStorage.getItem(SETTINGS_CACHE_KEY);
+    if (!raw) return null;
+    const { data, timestamp } = JSON.parse(raw);
+    return {
+      data,
+      stale: Date.now() - timestamp > SETTINGS_CACHE_TTL,
+    };
+  } catch { return null; }
+}
+
+function setCachedSettings(data) {
+  try {
+    localStorage.setItem(SETTINGS_CACHE_KEY, JSON.stringify({ data, timestamp: Date.now() }));
+  } catch { /* quota exceeded, ignore */ }
+}
+
 export async function loadMenuData(forceRefresh = false) {
   if (!forceRefresh && MENU_CACHE.data) {
     MENU_DATA = MENU_CACHE.data.menuData;
@@ -67,24 +88,39 @@ export function applySettings(settings) {
   SETTINGS = settings;
   if (settings.wa_number) WA_NUMBER = settings.wa_number;
   MENU_CACHE.settings = settings;
+  setCachedSettings(settings);
   renderBranding();
 }
 
 export async function loadSettings(forceRefresh = false) {
+  console.time('loadSettings');
   if (!forceRefresh && MENU_CACHE.settings) {
     SETTINGS = MENU_CACHE.settings;
     if (SETTINGS.wa_number) WA_NUMBER = SETTINGS.wa_number;
+    console.timeEnd('loadSettings');
     renderBranding();
     return;
+  }
+  if (!forceRefresh) {
+    const cached = getCachedSettings();
+    if (cached) {
+      SETTINGS = cached.data;
+      if (SETTINGS.wa_number) WA_NUMBER = SETTINGS.wa_number;
+      MENU_CACHE.settings = SETTINGS;
+      renderBranding();
+      if (!cached.stale) { console.timeEnd('loadSettings'); return; }
+    }
   }
   try {
     SETTINGS = await getSettings();
     if (SETTINGS.wa_number) WA_NUMBER = SETTINGS.wa_number;
     MENU_CACHE.settings = SETTINGS;
+    setCachedSettings(SETTINGS);
     renderBranding();
   } catch (e) {
     console.warn('Impossible de charger la configuration :', e);
   }
+  console.timeEnd('loadSettings');
 }
 
 export function renderBranding() {
@@ -487,8 +523,8 @@ function setupMenuEventListeners() {
 }
 
 export async function initMenu() {
-  await loadMenuData();
-  await loadSettings();
+  console.time('initMenu');
+  await Promise.all([loadMenuData(), loadSettings()]);
   renderContact();
   updateCartBadge();
   setupReveal();
@@ -501,4 +537,5 @@ export async function initMenu() {
   renderFeatured();
   renderFilterChips();
   renderMenuGrid();
+  console.timeEnd('initMenu');
 }
