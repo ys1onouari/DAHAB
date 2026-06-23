@@ -233,6 +233,7 @@ export function renderFeatured() {
 }
 
 function dishCard(dish) {
+  const showImages = SETTINGS.show_dish_images !== 'false';
   const badges = [];
 
   badges.push(`<span class="badge badge-category">${getCategoryName(dish.category_id)}</span>`);
@@ -241,16 +242,25 @@ function dishCard(dish) {
     badges.push(`<span class="badge badge-unavail">${t('dish.unavailable')}</span>`);
   }
 
-  const imgHtml = dish.image
-    ? `<img src="${dish.image}" alt="${localized(dish.name)}" class="dish-img"/>`
-    : `<div class="dish-img-placeholder"></div>`;
+  const noImageClass = showImages ? '' : ' dish-card--no-image';
+
+  const imgBlock = showImages
+    ? `<div class="dish-img-wrap">
+        ${dish.image
+          ? `<img src="${dish.image}" alt="${localized(dish.name)}" class="dish-img"/>`
+          : `<div class="dish-img-placeholder"></div>`}
+        ${badges.join('')}
+      </div>`
+    : '';
+
+  const badgesBlock = !showImages && badges.length
+    ? `<div class="dish-badges-inline">${badges.join('')}</div>`
+    : '';
 
   return `
-  <div class="dish-card" data-id="${dish.id}">
-    <div class="dish-img-wrap">
-      ${imgHtml}
-      ${badges.join('')}
-    </div>
+  <div class="dish-card${noImageClass}" data-id="${dish.id}">
+    ${imgBlock}
+    ${badgesBlock}
     <div class="dish-body">
       <div class="dish-name">${localized(dish.name)}</div>
       <div class="dish-footer">

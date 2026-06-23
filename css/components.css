@@ -607,6 +607,26 @@
   transform: translateY(-4px);
 }
 
+.dish-card--no-image {
+  padding-top: 0;
+}
+
+.dish-badges-inline {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  justify-content: flex-end;
+  padding: var(--space-sm) var(--space-md) var(--space-xs);
+}
+
+.dish-badges-inline .badge {
+  position: static;
+}
+
+.dish-card--no-image .dish-body {
+  padding-top: var(--space-sm);
+}
+
 .dish-img-wrap {
   position: relative;
   width: 100%;

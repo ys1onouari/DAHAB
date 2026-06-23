@@ -136,7 +136,8 @@ INSERT INTO settings (key, value) VALUES
   ('phone_raw',           '+212524432100'),
   ('email',               'contact@fadaerif.ma'),
   ('instagram',           '@fadaerif.marrakech'),
-   ('wa_number',           '212661234567');
+   ('wa_number',           '212661234567'),
+  ('show_dish_images',    'true');
 
 -- Ajouter la clé "ar" aux JSONB pour les nouvelles installations
 UPDATE categories SET name = name || '{"ar":""}' WHERE NOT (name ? 'ar');

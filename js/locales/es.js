@@ -145,6 +145,9 @@ export default {
     configInstagram: 'Instagram',
     configWaNumber: 'WhatsApp (número, sin +)',
     configGoogleReviewsUrl: 'Google Reviews URL',
+    configShowDishImages: 'Mostrar fotos de los platos',
+    configShowDishImagesOn: 'Fotos mostradas',
+    configShowDishImagesOff: 'Fotos ocultas',
   },
   modal: {
     confirm: 'Confirmar',

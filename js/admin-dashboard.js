@@ -306,6 +306,19 @@ function bindEvents() {
       if (await showConfirm(t('admin.deleteConfirmCat'))) { await deleteCategory(id); await refresh(); }
     }
   });
+
+  document.addEventListener('click', (e) => {
+    const toggle = e.target.closest('#adminShowDishImages');
+    if (!toggle) return;
+    const isOn = toggle.classList.toggle('on');
+    toggle.setAttribute('aria-checked', isOn);
+    const label = toggle.nextElementSibling;
+    if (label) {
+      label.textContent = isOn
+        ? t('admin.configShowDishImagesOn')
+        : t('admin.configShowDishImagesOff');
+    }
+  });
 }
 
 function setupItemForm(item) {
@@ -620,7 +633,7 @@ async function importCatsXLSX(file) {
 
 /* --- Config --- */
 let configData = {};
-const CONFIG_KEYS = ['restaurant_name','restaurant_subtitle','address','hours','phone','phone_raw','email','instagram','wa_number','google_reviews_url'];
+const CONFIG_KEYS = ['restaurant_name','restaurant_subtitle','address','hours','phone','phone_raw','email','instagram','wa_number','google_reviews_url','show_dish_images'];
 
 async function loadConfig() {
   try {
@@ -631,6 +644,18 @@ async function loadConfig() {
       const input = form.querySelector(`[name="${key}"]`);
       if (input) input.value = configData[key] || '';
     });
+    const showDishImagesToggle = document.getElementById('adminShowDishImages');
+    const showDishImagesLabel = showDishImagesToggle?.nextElementSibling;
+    const showImages = configData.show_dish_images !== 'false';
+    if (showDishImagesToggle) {
+      showDishImagesToggle.classList.toggle('on', showImages);
+      showDishImagesToggle.setAttribute('aria-checked', showImages);
+    }
+    if (showDishImagesLabel) {
+      showDishImagesLabel.textContent = showImages
+        ? t('admin.configShowDishImagesOn')
+        : t('admin.configShowDishImagesOff');
+    }
   } catch (e) {
     console.warn('Échec du chargement de la configuration :', e);
   }
@@ -647,6 +672,8 @@ $('adminSaveConfig')?.addEventListener('click', async () => {
   }
   const updates = {};
   CONFIG_KEYS.forEach(key => { updates[key] = fd.get(key) || ''; });
+  const showDishImagesToggle = document.getElementById('adminShowDishImages');
+  updates.show_dish_images = showDishImagesToggle?.classList.contains('on') ? 'true' : 'false';
   configData = updates;
   const { applySettings } = await import('./menu.js');
   applySettings(updates);
