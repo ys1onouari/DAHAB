@@ -308,15 +308,20 @@ function bindEvents() {
   });
 
   document.addEventListener('click', (e) => {
-    const toggle = e.target.closest('#adminShowDishImages');
+    const toggle = e.target.closest('#adminShowDishImages, #adminOrderingEnabled');
     if (!toggle) return;
     const isOn = toggle.classList.toggle('on');
     toggle.setAttribute('aria-checked', isOn);
     const label = toggle.nextElementSibling;
-    if (label) {
+    if (!label) return;
+    if (toggle.id === 'adminShowDishImages') {
       label.textContent = isOn
         ? t('admin.configShowDishImagesOn')
         : t('admin.configShowDishImagesOff');
+    } else if (toggle.id === 'adminOrderingEnabled') {
+      label.textContent = isOn
+        ? t('admin.configOrderingEnabledOn')
+        : t('admin.configOrderingEnabledOff');
     }
   });
 }
@@ -497,7 +502,7 @@ async function exportXLSX() {
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = `snackalmadina_plats_${new Date().toISOString().slice(0, 10)}.xlsx`;
+    a.download = `dahabcoffee_plats_${new Date().toISOString().slice(0, 10)}.xlsx`;
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
@@ -584,7 +589,7 @@ async function exportCatsXLSX() {
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = `snackalmadina_categories_${new Date().toISOString().slice(0, 10)}.xlsx`;
+    a.download = `dahabcoffee_categories_${new Date().toISOString().slice(0, 10)}.xlsx`;
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
@@ -633,7 +638,7 @@ async function importCatsXLSX(file) {
 
 /* --- Config --- */
 let configData = {};
-const CONFIG_KEYS = ['restaurant_name','restaurant_subtitle','address','hours','phone','phone_raw','email','instagram','wa_number','google_reviews_url','show_dish_images'];
+const CONFIG_KEYS = ['restaurant_name','restaurant_subtitle','address','hours','phone','phone_raw','email','instagram','wa_number','google_reviews_url','show_dish_images','ordering_enabled'];
 
 async function loadConfig() {
   try {
@@ -656,6 +661,18 @@ async function loadConfig() {
         ? t('admin.configShowDishImagesOn')
         : t('admin.configShowDishImagesOff');
     }
+    const orderingToggle = document.getElementById('adminOrderingEnabled');
+    const orderingLabel = orderingToggle?.nextElementSibling;
+    const orderingEnabled = configData.ordering_enabled !== 'false';
+    if (orderingToggle) {
+      orderingToggle.classList.toggle('on', orderingEnabled);
+      orderingToggle.setAttribute('aria-checked', orderingEnabled);
+    }
+    if (orderingLabel) {
+      orderingLabel.textContent = orderingEnabled
+        ? t('admin.configOrderingEnabledOn')
+        : t('admin.configOrderingEnabledOff');
+    }
   } catch (e) {
     console.warn('Échec du chargement de la configuration :', e);
   }
@@ -674,6 +691,8 @@ $('adminSaveConfig')?.addEventListener('click', async () => {
   CONFIG_KEYS.forEach(key => { updates[key] = fd.get(key) || ''; });
   const showDishImagesToggle = document.getElementById('adminShowDishImages');
   updates.show_dish_images = showDishImagesToggle?.classList.contains('on') ? 'true' : 'false';
+  const orderingToggle = document.getElementById('adminOrderingEnabled');
+  updates.ordering_enabled = orderingToggle?.classList.contains('on') ? 'true' : 'false';
   configData = updates;
   const { applySettings } = await import('./menu.js');
   applySettings(updates);

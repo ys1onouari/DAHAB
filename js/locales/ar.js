@@ -46,7 +46,7 @@ export default {
   },
   dish: {
     unavailable: 'غير متوفر',
-    orderBtn: 'اطلب عبر واتساب',
+    orderBtn: 'اطلب',
     unavailableMsg: 'غير متوفر حالياً',
     added: 'تمت إضافة {{name}}',
     price: '{{price}} درهم',
@@ -148,6 +148,9 @@ export default {
     configShowDishImages: 'إظهار صور الأطباق',
     configShowDishImagesOn: 'الصور معروضة',
     configShowDishImagesOff: 'الصور مخفية',
+    configOrderingEnabled: 'تفعيل الطلبات',
+    configOrderingEnabledOn: 'الطلبات مفعلة',
+    configOrderingEnabledOff: 'الطلبات معطلة',
   },
   modal: {
     confirm: 'تأكيد',

@@ -8,31 +8,31 @@ const SVG = {
 
 function _showModal({ icon, title, message, input, confirmText, cancelText, showCancel }) {
   return new Promise(resolve => {
-    const existing = document.querySelector('.snackalmadina-modal-overlay');
+    const existing = document.querySelector('.dahabcoffee-modal-overlay');
     if (existing) existing.remove();
 
     const overlay = document.createElement('div');
-    overlay.className = 'snackalmadina-modal-overlay';
+    overlay.className = 'dahabcoffee-modal-overlay';
     overlay.innerHTML = `
-      <div class="snackalmadina-modal">
-        <div class="snackalmadina-modal-accent"></div>
-        <div class="snackalmadina-modal-icon">${icon}</div>
-        <div class="snackalmadina-modal-title">${title}</div>
-        <div class="snackalmadina-modal-message">${message}</div>
-        ${input !== undefined ? `<div class="snackalmadina-modal-input"><input type="text" id="snackalmadinaModalInput" value="${input}" class="snackalmadina-modal-field"/></div>` : ''}
-        <div class="snackalmadina-modal-actions">
-          ${showCancel ? `<button class="snackalmadina-modal-btn snackalmadina-modal-btn-cancel">${cancelText}</button>` : ''}
-          <button class="snackalmadina-modal-btn snackalmadina-modal-btn-confirm">${confirmText}</button>
+      <div class="dahabcoffee-modal">
+        <div class="dahabcoffee-modal-accent"></div>
+        <div class="dahabcoffee-modal-icon">${icon}</div>
+        <div class="dahabcoffee-modal-title">${title}</div>
+        <div class="dahabcoffee-modal-message">${message}</div>
+        ${input !== undefined ? `<div class="dahabcoffee-modal-input"><input type="text" id="dahabcoffeeModalInput" value="${input}" class="dahabcoffee-modal-field"/></div>` : ''}
+        <div class="dahabcoffee-modal-actions">
+          ${showCancel ? `<button class="dahabcoffee-modal-btn dahabcoffee-modal-btn-cancel">${cancelText}</button>` : ''}
+          <button class="dahabcoffee-modal-btn dahabcoffee-modal-btn-confirm">${confirmText}</button>
         </div>
       </div>`;
 
     document.body.appendChild(overlay);
     requestAnimationFrame(() => overlay.classList.add('open'));
 
-    const modal = overlay.querySelector('.snackalmadina-modal');
-    const confirmBtn = modal.querySelector('.snackalmadina-modal-btn-confirm');
-    const cancelBtn = modal.querySelector('.snackalmadina-modal-btn-cancel');
-    const inputEl = modal.querySelector('#snackalmadinaModalInput');
+    const modal = overlay.querySelector('.dahabcoffee-modal');
+    const confirmBtn = modal.querySelector('.dahabcoffee-modal-btn-confirm');
+    const cancelBtn = modal.querySelector('.dahabcoffee-modal-btn-cancel');
+    const inputEl = modal.querySelector('#dahabcoffeeModalInput');
 
     if (inputEl) setTimeout(() => inputEl.focus(), 200);
 

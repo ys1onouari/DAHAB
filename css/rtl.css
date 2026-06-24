@@ -3,15 +3,15 @@
    ========================================== */
 
 [dir="rtl"] body {
-  font-family: 'Tajawal', 'Noto Naskh Arabic', sans-serif;
+  font-family: var(--font-arabic);
 }
 
 [dir="rtl"] .desktop-nav-item {
-  font-family: 'Tajawal', 'Noto Naskh Arabic', 'Inter', sans-serif;
+  font-family: var(--font-arabic-full);
 }
 
 [dir="rtl"] .nav-item span {
-  font-family: 'Tajawal', 'Noto Naskh Arabic', 'Inter', sans-serif;
+  font-family: var(--font-arabic-full);
 }
 
 [dir="rtl"] .lang-switcher {
@@ -20,7 +20,7 @@
 }
 
 [dir="rtl"] .lang-btn {
-  font-family: 'Tajawal', 'Noto Naskh Arabic', 'Inter', sans-serif;
+  font-family: var(--font-arabic-full);
 }
 
 [dir="rtl"] .cart-badge {
@@ -33,7 +33,7 @@
   left: -100%;
   border-left: none;
   border-right: 1px solid var(--glass-border);
-  box-shadow: 8px 0 48px rgba(0, 0, 0, 0.5);
+  box-shadow: var(--shadow-cart-panel-rtl);
 }
 
 [dir="rtl"] .cart-sidebar.open {
@@ -48,8 +48,8 @@
 }
 
 [dir="rtl"] .badge {
-  left: auto;
-  right: 12px;
+  right: auto;
+  left: 12px;
 }
 
 [dir="rtl"] .auth-close {
@@ -59,7 +59,7 @@
 
 [dir="rtl"] .admin-sidebar {
   border-right: none;
-  border-left: 1px solid rgba(255, 255, 255, 0.08);
+  border-left: 1px solid rgba(var(--white-rgb), 0.08);
 }
 
 [dir="rtl"] .admin-nav-item {
@@ -71,7 +71,7 @@
 }
 
 [dir="rtl"] .admin-tbl td::before {
-  margin-left: 8px;
+  margin-left: var(--space-sm);
   margin-right: 0;
 }
 
@@ -80,93 +80,93 @@
 }
 
 [dir="rtl"] .admin-logout {
-  font-family: 'Tajawal', 'Noto Naskh Arabic', 'Inter', sans-serif;
+  font-family: var(--font-arabic-full);
 }
 
 [dir="rtl"] .admin-nav-item {
-  font-family: 'Tajawal', 'Noto Naskh Arabic', 'Inter', sans-serif;
+  font-family: var(--font-arabic-full);
 }
 
 [dir="rtl"] .admin-btn-add,
 [dir="rtl"] .admin-btn-export,
 [dir="rtl"] .admin-btn-import {
-  font-family: 'Tajawal', 'Noto Naskh Arabic', 'Inter', sans-serif;
+  font-family: var(--font-arabic-full);
 }
 
-[dir="rtl"] .snackalmadina-modal-btn {
-  font-family: 'Tajawal', 'Noto Naskh Arabic', 'Inter', sans-serif;
+[dir="rtl"] .dahabcoffee-modal-btn {
+  font-family: var(--font-arabic-full);
 }
 
-[dir="rtl"] .snackalmadina-modal-field {
-  font-family: 'Tajawal', 'Noto Naskh Arabic', 'Inter', sans-serif;
+[dir="rtl"] .dahabcoffee-modal-field {
+  font-family: var(--font-arabic-full);
 }
 
 [dir="rtl"] .auth-input {
-  font-family: 'Tajawal', 'Noto Naskh Arabic', 'Inter', sans-serif;
+  font-family: var(--font-arabic-full);
 }
 
 [dir="rtl"] .auth-btn {
-  font-family: 'Tajawal', 'Noto Naskh Arabic', 'Inter', sans-serif;
+  font-family: var(--font-arabic-full);
 }
 
 [dir="rtl"] .auth-toggle-label {
-  font-family: 'Tajawal', 'Noto Naskh Arabic', 'Inter', sans-serif;
+  font-family: var(--font-arabic-full);
 }
 
 [dir="rtl"] .auth-title {
-  font-family: 'Tajawal', 'Noto Naskh Arabic', serif;
+  font-family: var(--font-arabic-heading);
 }
 
 [dir="rtl"] .cart-title {
-  font-family: 'Tajawal', 'Noto Naskh Arabic', serif;
+  font-family: var(--font-arabic-heading);
 }
 
 [dir="rtl"] .hero-title {
-  font-family: 'Tajawal', 'Noto Naskh Arabic', serif;
+  font-family: var(--font-arabic-heading);
 }
 
 [dir="rtl"] .hero-eyebrow {
-  letter-spacing: 0.1em;
+  letter-spacing: var(--ls-widest);
 }
 
 [dir="rtl"] .section-title {
-  font-family: 'Tajawal', 'Noto Naskh Arabic', serif;
+  font-family: var(--font-arabic-heading);
 }
 
 [dir="rtl"] .dish-name {
-  font-family: 'Tajawal', 'Noto Naskh Arabic', serif;
+  font-family: var(--font-arabic-heading);
 }
 
 [dir="rtl"] .dish-price {
-  font-family: 'Tajawal', 'Noto Naskh Arabic', serif;
+  font-family: var(--font-arabic-heading);
 }
 
 [dir="rtl"] .cart-total-amount {
-  font-family: 'Tajawal', 'Noto Naskh Arabic', serif;
+  font-family: var(--font-arabic-heading);
 }
 
 [dir="rtl"] .contact-info h3 {
-  font-family: 'Tajawal', 'Noto Naskh Arabic', serif;
+  font-family: var(--font-arabic-heading);
 }
 
 [dir="rtl"] .google-review-score {
-  font-family: 'Tajawal', 'Noto Naskh Arabic', serif;
+  font-family: var(--font-arabic-heading);
 }
 
 [dir="rtl"] .admin-view-header h1 {
-  font-family: 'Tajawal', 'Noto Naskh Arabic', serif;
+  font-family: var(--font-arabic-heading);
 }
 
 [dir="rtl"] .admin-sidebar-header {
-  font-family: 'Tajawal', 'Noto Naskh Arabic', serif;
+  font-family: var(--font-arabic-heading);
 }
 
 [dir="rtl"] .admin-modal h2 {
-  font-family: 'Tajawal', 'Noto Naskh Arabic', serif;
+  font-family: var(--font-arabic-heading);
 }
 
-[dir="rtl"] .snackalmadina-modal-title {
-  font-family: 'Tajawal', 'Noto Naskh Arabic', serif;
+[dir="rtl"] .dahabcoffee-modal-title {
+  font-family: var(--font-arabic-heading);
 }
 
 [dir="rtl"] .admin-modal .form-group label {
@@ -197,7 +197,7 @@
 }
 
 [dir="rtl"] .admin-upload-label {
-  font-family: 'Tajawal', 'Noto Naskh Arabic', 'Inter', sans-serif;
+  font-family: var(--font-arabic-full);
 }
 
 /* RTL Toast positioning (desktop) */
@@ -224,7 +224,7 @@
 /* Ensure hero tagline and buttons stay LTR in RTL mode */
 [dir="rtl"] .hero-tagline,
 [dir="rtl"] .hero-subtitle {
-  letter-spacing: 0.05em;
+  letter-spacing: var(--ls-normal);
 }
 
 /* SVG icons that should not flip in RTL - they stay as-is */

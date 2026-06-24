@@ -64,7 +64,7 @@
   }
 
   .hero-title {
-    margin-bottom: 4px;
+    margin-bottom: var(--space-xs);
   }
 
   .hero-subtitle {
@@ -84,9 +84,9 @@
     flex-direction: row;
     padding: 8px 12px;
     border-right: none;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    border-bottom: 1px solid rgba(var(--white-rgb), 0.08);
     overflow-x: auto;
-    gap: 4px;
+    gap: var(--space-xs);
     -webkit-overflow-scrolling: touch;
   }
 
@@ -101,12 +101,12 @@
   .admin-sidebar-nav {
     flex-direction: row;
     flex: none;
-    gap: 4px;
+    gap: var(--space-xs);
   }
 
   .admin-nav-item {
     padding: 6px 12px;
-    font-size: 11px;
+    font-size: var(--text-tiny);
     white-space: nowrap;
     flex-shrink: 0;
     justify-content: flex-start;
@@ -128,7 +128,7 @@
   }
 
   .admin-main {
-    padding: 16px;
+    padding: var(--space-md);
   }
 
   .admin-view-header {
@@ -139,14 +139,14 @@
   }
 
   .admin-view-header h1 {
-    font-size: 20px;
+    font-size: var(--text-xl);
   }
 
   .admin-btn-add {
     width: 100%;
     text-align: center;
     padding: 10px 18px;
-    font-size: 12px;
+    font-size: var(--text-xs);
   }
 
   .admin-table-wrap {
@@ -157,7 +157,7 @@
   .admin-tbl th,
   .admin-tbl td {
     padding: 8px 10px;
-    font-size: 11px;
+    font-size: var(--text-tiny);
     white-space: nowrap;
   }
 
@@ -185,7 +185,7 @@
   }
 
   .admin-modal h2 {
-    font-size: 18px;
+    font-size: var(--text-lg);
   }
 }
 
@@ -206,7 +206,7 @@
 
   .admin-tbl tr {
     background: var(--card);
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(var(--white-rgb), 0.08);
     border-radius: var(--radius-md);
     padding: 12px;
     margin-bottom: 10px;
@@ -219,19 +219,19 @@
   .admin-tbl td {
     padding: 4px 0;
     border-bottom: none;
-    font-size: 12px;
+    font-size: var(--text-xs);
     white-space: normal;
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: var(--space-sm);
   }
 
   .admin-tbl td::before {
     content: attr(data-label);
-    font-size: 10px;
-    font-weight: 600;
+    font-size: var(--text-micro);
+    font-weight: var(--fw-semibold);
     text-transform: uppercase;
-    letter-spacing: 0.08em;
+    letter-spacing: var(--ls-wider);
     color: var(--text3);
     min-width: 70px;
     flex-shrink: 0;
@@ -252,7 +252,7 @@
   }
 
   .admin-view-header h1 {
-    font-size: 18px;
+    font-size: var(--text-lg);
   }
 
   .admin-main {

@@ -5,13 +5,25 @@ import { $ } from './helpers.js';
 let WA_NUMBER = '212630230803';
 let SETTINGS = {};
 
+function isOrderingEnabled() {
+  return SETTINGS.ordering_enabled !== 'false';
+}
+
+function applyCartVisibility() {
+  const visible = isOrderingEnabled();
+  ['cartOpenBtn', 'cartBadge', 'cartSidebar', 'cartOverlay'].forEach(id => {
+    const el = $(id);
+    if (el) el.style.display = visible ? '' : 'none';
+  });
+}
+
 let MENU_DATA = [];
 let CATEGORIES = [{ id: null, name: '__all__', icon: '' }];
 let CATEGORY_MAP = new Map();
 let LOAD_STATUS = 'success';
 let MENU_CACHE = { data: null, settings: null };
 
-const SETTINGS_CACHE_KEY = 'fadaerif_settings_cache';
+const SETTINGS_CACHE_KEY = 'dahabcoffee_settings_cache';
 const SETTINGS_CACHE_TTL = 300000;
 
 function getCachedSettings() {
@@ -89,6 +101,7 @@ export function applySettings(settings) {
   if (settings.wa_number) WA_NUMBER = settings.wa_number;
   MENU_CACHE.settings = settings;
   setCachedSettings(settings);
+  applyCartVisibility();
   renderBranding();
 }
 
@@ -263,20 +276,20 @@ function dishCard(dish) {
     ${badgesBlock}
     <div class="dish-body">
       <div class="dish-name">${localized(dish.name)}</div>
-      <div class="dish-footer">
-        <div>
-          <span class="dish-price">${t('dish.price', { price: dish.price })}</span>
-        </div>
-        <div class="dish-actions">
-          ${dish.available ? `<button class="add-cart-btn" data-action="cart">+</button>` : ''}
-        </div>
+      <div class="dish-price-line">
+        <span class="dish-price">${t('dish.price', { price: dish.price })}</span>
       </div>
-      ${dish.available
-        ? `<button class="wa-btn" data-action="order" style="width:100%;margin-top:10px;justify-content:center;">
-        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.136.561 4.14 1.541 5.87L0 24l6.268-1.508A11.95 11.95 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.939 0-3.765-.494-5.353-1.359l-.373-.21-3.863.929.972-3.756-.235-.391A9.963 9.963 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
-        ${t('dish.orderBtn')}
-      </button>`
-        : `<div style="text-align:center;font-size:12px;color:var(--text3);margin-top:10px;padding:8px;background:rgba(255,255,255,.04);border-radius:8px">${t('dish.unavailableMsg')}</div>`}
+      <div class="dish-actions">
+        ${dish.available ? `
+        ${isOrderingEnabled() ? `
+        <button class="wa-btn" data-action="order">
+          <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.136.561 4.14 1.541 5.87L0 24l6.268-1.508A11.95 11.95 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.939 0-3.765-.494-5.353-1.359l-.373-.21-3.863.929.972-3.756-.235-.391A9.963 9.963 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+          ${t('dish.orderBtn')}
+        </button>
+        <button class="add-cart-btn" data-action="cart">+</button>
+        ` : ''}
+        ` : `<div class="dish-unavailable-msg">${t('dish.unavailableMsg')}</div>`}
+      </div>
     </div>
   </div>`;
 }
@@ -339,6 +352,7 @@ export function renderMenuGrid(items) {
 }
 
 function addToCart(id) {
+  if (!isOrderingEnabled()) return;
   const dish = MENU_DATA.find(d => d.id === id);
   if (!dish) return;
   const existing = cart.find(c => c.id === id);
@@ -370,6 +384,7 @@ function updateCartBadge() {
 }
 
 export function openCart() {
+  if (!isOrderingEnabled()) return;
   const overlay = $('cartOverlay');
   const sidebar = $('cartSidebar');
   if (overlay) overlay.classList.add('open');
@@ -451,6 +466,7 @@ function generateTicket() {
 }
 
 function orderWhatsApp(id) {
+  if (!isOrderingEnabled()) return;
   const dish = MENU_DATA.find(d => d.id === id);
   if (!dish) return;
   const ticket = generateTicket();
@@ -459,6 +475,7 @@ function orderWhatsApp(id) {
 }
 
 export function checkoutWhatsApp() {
+  if (!isOrderingEnabled()) return;
   if (!cart.length) return;
   const ticket = generateTicket();
   const lines = cart.map(c => `${c.qty}x ${localized(c.name)} — ${t('dish.price', { price: (c.price * c.qty).toFixed(2) })}`).join('\n');
@@ -536,6 +553,7 @@ export async function initMenu() {
   console.time('initMenu');
   await Promise.all([loadMenuData(), loadSettings()]);
   renderContact();
+  applyCartVisibility();
   updateCartBadge();
   setupReveal();
   setupMenuEventListeners();

@@ -471,3 +471,330 @@ Cet ordre garantit que chaque fichier est cohérent avec les fichiers déjà mod
 | 9 | `css/components.css` (étape 11) | Fix alignement badges — peut être appliqué après le CSS de base |
 
 **Ordre compact :** DB → i18n → HTML → JS → CSS (v1) → doc → CSS (v2 fix badges)
+
+---
+
+# CHANGELOG_APPLY — Toggle "Activer les commandes"
+
+## Résumé
+Ajout d'un toggle dans le dashboard admin (section Configuration) qui contrôle l'activation du système de commandes (panier, WhatsApp). Quand le toggle est OFF, les boutons "Commander via WhatsApp" et "Ajouter au panier" sont retirés du rendu des cartes produits, les éléments du panier (#cartOpenBtn, #cartBadge, #cartSidebar, #cartOverlay) sont masqués, et les fonctions JS (addToCart, openCart, orderWhatsApp, checkoutWhatsApp) sont neutralisées par un guard.
+
+## Fichiers modifiés
+
+### 1. `supabase-schema.sql` — Seed settings
+
+**Avant :**
+```sql
+   ('show_dish_images',    'true');
+```
+
+**Après :**
+```sql
+   ('show_dish_images',    'true'),
+   ('ordering_enabled',    'true');
+```
+
+---
+
+### 2. `supabase-migration-v4.sql` — Migration SQL (NOUVEAU FICHIER)
+
+**Contenu complet :**
+```sql
+-- =============================================================================
+-- Migration v4 : Ajouter le toggle ordering_enabled dans settings
+-- =============================================================================
+INSERT INTO settings (key, value)
+VALUES ('ordering_enabled', 'true')
+ON CONFLICT (key) DO NOTHING;
+```
+
+---
+
+### 3. `js/locales/fr.js` — +3 clés admin
+
+**Avant (ligne 150) :**
+```js
+    configShowDishImagesOff: 'Photos masquées',
+  },
+```
+
+**Après :**
+```js
+    configShowDishImagesOff: 'Photos masquées',
+    configOrderingEnabled: 'Activer les commandes',
+    configOrderingEnabledOn: 'Commandes activées',
+    configOrderingEnabledOff: 'Commandes désactivées',
+  },
+```
+
+### 3b. `js/locales/en.js` — +3 clés admin
+
+```js
+    configShowDishImagesOff: 'Photos hidden',
+    configOrderingEnabled: 'Enable ordering',
+    configOrderingEnabledOn: 'Ordering enabled',
+    configOrderingEnabledOff: 'Ordering disabled',
+  },
+```
+
+### 3c. `js/locales/es.js` — +3 clés admin
+
+```js
+    configShowDishImagesOff: 'Fotos ocultas',
+    configOrderingEnabled: 'Activar pedidos',
+    configOrderingEnabledOn: 'Pedidos activados',
+    configOrderingEnabledOff: 'Pedidos desactivados',
+  },
+```
+
+### 3d. `js/locales/ar.js` — +3 clés admin
+
+```js
+    configShowDishImagesOff: 'الصور مخفية',
+    configOrderingEnabled: 'تفعيل الطلبات',
+    configOrderingEnabledOn: 'الطلبات مفعلة',
+    configOrderingEnabledOff: 'الطلبات معطلة',
+  },
+```
+
+---
+
+### 4. `index.html` — Nouveau toggle dans le config grid
+
+**Avant (ligne 240) :**
+```html
+              </div>
+            </div>
+          </form>
+```
+
+**Après :**
+```html
+              </div>
+              <div class="form-group full">
+                <label data-i18n="admin.configOrderingEnabled">Activer les commandes</label>
+                <div class="toggle-wrap">
+                  <button type="button" class="toggle on" id="adminOrderingEnabled" role="switch" aria-checked="true"></button>
+                  <span class="toggle-label" data-i18n="admin.configOrderingEnabledOn">Commandes activées</span>
+                </div>
+              </div>
+            </div>
+          </form>
+```
+
+---
+
+### 5. `js/admin-dashboard.js` — 4 modifications
+
+**a) `CONFIG_KEYS` — Ajout de `'ordering_enabled'`**
+
+**Avant :**
+```js
+const CONFIG_KEYS = ['restaurant_name','restaurant_subtitle','address','hours','phone','phone_raw','email','instagram','wa_number','google_reviews_url','show_dish_images'];
+```
+
+**Après :**
+```js
+const CONFIG_KEYS = ['restaurant_name','restaurant_subtitle','address','hours','phone','phone_raw','email','instagram','wa_number','google_reviews_url','show_dish_images','ordering_enabled'];
+```
+
+**b) `bindEvents()` — Click handler unifié par `#adminShowDishImages, #adminOrderingEnabled`**
+
+**Avant :**
+```js
+  document.addEventListener('click', (e) => {
+    const toggle = e.target.closest('#adminShowDishImages');
+    if (!toggle) return;
+    const isOn = toggle.classList.toggle('on');
+    toggle.setAttribute('aria-checked', isOn);
+    const label = toggle.nextElementSibling;
+    if (label) {
+      label.textContent = isOn
+        ? t('admin.configShowDishImagesOn')
+        : t('admin.configShowDishImagesOff');
+    }
+  });
+```
+
+**Après :**
+```js
+  document.addEventListener('click', (e) => {
+    const toggle = e.target.closest('#adminShowDishImages, #adminOrderingEnabled');
+    if (!toggle) return;
+    const isOn = toggle.classList.toggle('on');
+    toggle.setAttribute('aria-checked', isOn);
+    const label = toggle.nextElementSibling;
+    if (!label) return;
+    if (toggle.id === 'adminShowDishImages') {
+      label.textContent = isOn
+        ? t('admin.configShowDishImagesOn')
+        : t('admin.configShowDishImagesOff');
+    } else if (toggle.id === 'adminOrderingEnabled') {
+      label.textContent = isOn
+        ? t('admin.configOrderingEnabledOn')
+        : t('admin.configOrderingEnabledOff');
+    }
+  });
+```
+
+**c) `loadConfig()` — Initialisation du nouveau toggle**
+
+**Avant :**
+```js
+    if (showDishImagesLabel) {
+      showDishImagesLabel.textContent = showImages
+        ? t('admin.configShowDishImagesOn')
+        : t('admin.configShowDishImagesOff');
+    }
+  } catch (e) {
+```
+
+**Après :**
+```js
+    if (showDishImagesLabel) {
+      showDishImagesLabel.textContent = showImages
+        ? t('admin.configShowDishImagesOn')
+        : t('admin.configShowDishImagesOff');
+    }
+    const orderingToggle = document.getElementById('adminOrderingEnabled');
+    const orderingLabel = orderingToggle?.nextElementSibling;
+    const orderingEnabled = configData.ordering_enabled !== 'false';
+    if (orderingToggle) {
+      orderingToggle.classList.toggle('on', orderingEnabled);
+      orderingToggle.setAttribute('aria-checked', orderingEnabled);
+    }
+    if (orderingLabel) {
+      orderingLabel.textContent = orderingEnabled
+        ? t('admin.configOrderingEnabledOn')
+        : t('admin.configOrderingEnabledOff');
+    }
+  } catch (e) {
+```
+
+**d) Save handler — Injection de la valeur du toggle**
+
+**Avant :**
+```js
+  const showDishImagesToggle = document.getElementById('adminShowDishImages');
+  updates.show_dish_images = showDishImagesToggle?.classList.contains('on') ? 'true' : 'false';
+  configData = updates;
+```
+
+**Après :**
+```js
+  const showDishImagesToggle = document.getElementById('adminShowDishImages');
+  updates.show_dish_images = showDishImagesToggle?.classList.contains('on') ? 'true' : 'false';
+  const orderingToggle = document.getElementById('adminOrderingEnabled');
+  updates.ordering_enabled = orderingToggle?.classList.contains('on') ? 'true' : 'false';
+  configData = updates;
+```
+
+---
+
+### 6. `js/menu.js` — Helper, guards, dishCard, cart UI visibility
+
+**a) Helper `isOrderingEnabled()` + `applyCartVisibility()`**
+
+**Avant (ligne 6) :**
+```js
+let SETTINGS = {};
+```
+
+**Après :**
+```js
+let SETTINGS = {};
+
+function isOrderingEnabled() {
+  return SETTINGS.ordering_enabled !== 'false';
+}
+
+function applyCartVisibility() {
+  const visible = isOrderingEnabled();
+  ['cartOpenBtn', 'cartBadge', 'cartSidebar', 'cartOverlay'].forEach(id => {
+    const el = $(id);
+    if (el) el.style.display = visible ? '' : 'none';
+  });
+}
+```
+
+**b) `dishCard()` — Boutons conditionnels**
+
+**Avant (lignes 269-277) :**
+```js
+      <div class="dish-actions">
+        ${dish.available ? `
+        <button class="wa-btn" data-action="order">
+          ...
+          ${t('dish.orderBtn')}
+        </button>
+        <button class="add-cart-btn" data-action="cart">+</button>
+        ` : `<div class="dish-unavailable-msg">${t('dish.unavailableMsg')}</div>`}
+      </div>
+```
+
+**Après :**
+```js
+      <div class="dish-actions">
+        ${dish.available ? `
+        ${isOrderingEnabled() ? `
+        <button class="wa-btn" data-action="order">
+          ...
+          ${t('dish.orderBtn')}
+        </button>
+        <button class="add-cart-btn" data-action="cart">+</button>
+        ` : ''}
+        ` : `<div class="dish-unavailable-msg">${t('dish.unavailableMsg')}</div>`}
+      </div>
+```
+
+**c) Guards JS (4 fonctions)**
+
+```js
+function addToCart(id) {
+  if (!isOrderingEnabled()) return;  // ← AJOUTÉ
+  ...
+}
+
+export function openCart() {
+  if (!isOrderingEnabled()) return;  // ← AJOUTÉ
+  ...
+}
+
+function orderWhatsApp(id) {
+  if (!isOrderingEnabled()) return;  // ← AJOUTÉ
+  ...
+}
+
+export function checkoutWhatsApp() {
+  if (!isOrderingEnabled()) return;  // ← AJOUTÉ
+  ...
+}
+```
+
+**d) `applySettings()` + `initMenu()` — Appel de `applyCartVisibility()`**
+
+```js
+// Dans applySettings() :
+  applyCartVisibility();   // ← AJOUTÉ
+  renderBranding();
+
+// Dans initMenu() :
+  renderContact();
+  applyCartVisibility();   // ← AJOUTÉ
+  updateCartBadge();
+```
+
+---
+
+## Ordre d'application recommandé
+
+| Ordre | Fichier | Justification |
+|---|---|---|
+| 1 | `supabase-migration-v4.sql` | DB d'abord pour que la clé `ordering_enabled` existe dans settings |
+| 2 | `supabase-schema.sql` | Source de vérité du schéma — seed mis à jour |
+| 3 | `js/locales/{fr,en,es,ar}.js` | Clés i18n avant d'être référencées dans HTML et JS |
+| 4 | `index.html` | Markup du toggle avec data-i18n |
+| 5 | `js/admin-dashboard.js` | CONFIG_KEYS, loadConfig, save handler, bindEvents |
+| 6 | `js/menu.js` | Helper, guards, dishCard, cart UI visibility |
+
+**Ordre compact :** DB → i18n → HTML → Admin JS → Menu JS

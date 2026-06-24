@@ -46,7 +46,7 @@ export default {
   },
   dish: {
     unavailable: 'Indisponible',
-    orderBtn: 'Commander via WhatsApp',
+    orderBtn: 'Commander',
     unavailableMsg: 'Temporairement indisponible',
     added: '{{name}} ajouté',
     price: '{{price}} DH',
@@ -69,7 +69,7 @@ export default {
     btnAdmin: 'Administration',
   },
   admin: {
-    title: 'SNACK AL MADINA',
+    title: 'Dahab Coffee',
     navItems: 'Plats',
     navCategories: 'Catégories',
     navConfig: 'Configuration',
@@ -148,6 +148,9 @@ export default {
     configShowDishImages: 'Afficher les photos des plats',
     configShowDishImagesOn: 'Photos affichées',
     configShowDishImagesOff: 'Photos masquées',
+    configOrderingEnabled: 'Activer les commandes',
+    configOrderingEnabledOn: 'Commandes activées',
+    configOrderingEnabledOff: 'Commandes désactivées',
   },
   modal: {
     confirm: 'Confirmer',

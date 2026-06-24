@@ -11,7 +11,7 @@
   <!-- Polices Google -->
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Tajawal:wght@300;400;500;700&family=Noto+Naskh+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Bebas+Neue&family=Tajawal:wght@300;400;500;700&family=Noto+Naskh+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet"/>
 
   <!-- Styles -->
   <link rel="stylesheet" href="css/main.css"/>
@@ -109,7 +109,7 @@
     <div class="hero-bg"></div>
     <div class="hero-pattern">
       <div class="hero-video-wrap" id="heroVideoWrap">
-        <iframe id="heroVideo" src="https://streamable.com/e/0j2ott?autoplay=1&loop=1&muted=1"
+        <iframe id="heroVideo" src="https://www.youtube.com/embed/0jIeCAOkgcQ?autoplay=1&loop=1&mute=1&end=33&playlist=0jIeCAOkgcQ"
           allow="autoplay; encrypted-media" title="Restaurant Background"></iframe>
         <div class="hero-video-overlay"></div>
       </div>
@@ -168,7 +168,7 @@
   <div class="admin-dashboard">
   <div class="admin-scaffold">
     <aside class="admin-sidebar">
-      <div class="admin-sidebar-header"><span data-i18n="admin.title">SNACK AL MADINA</span> <span data-i18n="nav.admin">Admin</span></div>
+      <div class="admin-sidebar-header"><span data-i18n="admin.title">Dahab Coffee</span> <span data-i18n="nav.admin">Admin</span></div>
       <nav class="admin-sidebar-nav">
         <button class="admin-nav-item active" data-admin-view="items">
           <svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/></svg>
@@ -236,6 +236,13 @@
                 <div class="toggle-wrap">
                   <button type="button" class="toggle on" id="adminShowDishImages" role="switch" aria-checked="true"></button>
                   <span class="toggle-label" data-i18n="admin.configShowDishImagesOn">Photos affichées</span>
+                </div>
+              </div>
+              <div class="form-group full">
+                <label data-i18n="admin.configOrderingEnabled">Activer les commandes</label>
+                <div class="toggle-wrap">
+                  <button type="button" class="toggle on" id="adminOrderingEnabled" role="switch" aria-checked="true"></button>
+                  <span class="toggle-label" data-i18n="admin.configOrderingEnabledOn">Commandes activées</span>
                 </div>
               </div>
             </div>

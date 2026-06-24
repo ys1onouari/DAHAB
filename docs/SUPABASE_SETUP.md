@@ -1,6 +1,6 @@
-# Configuration Supabase — RESTAURANT FADAE RIF
+# Configuration Supabase — DAHAB COFFEE
 
-Ce document répertorie **toute** la configuration Supabase utilisée par le projet RESTAURANT FADAE RIF. Il permet de migrer vers un nouveau compte/projet Supabase sans rien oublier.
+Ce document répertorie **toute** la configuration Supabase utilisée par le projet DAHAB COFFEE. Il permet de migrer vers un nouveau compte/projet Supabase sans rien oublier.
 
 ---
 
@@ -16,7 +16,7 @@ export const SUPABASE_ANON_KEY = '<anon-key-public>';
 ### Fichier `.env` (racine du projet — usage local / CI)
 
 ```env
-# Supabase — FADAE RIF Admin
+# Supabase — DAHAB COFFEE Admin
 SUPABASE_URL=https://<project-ref>.supabase.co
 SUPABASE_ANON_KEY=<anon-key-public>
 SUPABASE_SERVICE_KEY=<service-role-key>       # Ne JAMAIS exposer côté client
@@ -50,7 +50,7 @@ Le projet utilise **Supabase Auth** avec la méthode **Email + Password**.
 
 | Champ | Valeur |
 |---|---|
-| Email | `admin@snackalmadina.com` |
+| Email | `admin@dahabcoffee.com` |
 | Mot de passe | `<your-admin-password>` |
 
 ### Création de l'admin user
@@ -65,7 +65,7 @@ Le projet utilise **Supabase Auth** avec la méthode **Email + Password**.
 curl -X POST https://api.supabase.com/v1/projects/<project-ref>/database/query \
   -H "Authorization: Bearer sbp_<pat>" \
   -H "Content-Type: application/json" \
-  -d '{"query": "SELECT supabase_auth.admin_create_user('\''admin@snackalmadina.com'\'', '\''<your-admin-password>'\'');"}'
+  -d '{"query": "SELECT supabase_auth.admin_create_user('\''admin@dahabcoffee.com'\'', '\''<your-admin-password>'\'');"}'
 ```
 
 ### Connexion côté client
@@ -146,14 +146,14 @@ CREATE TABLE settings (
 
 | Key | Valeur par défaut | Usage |
 |---|---|---|
-| `restaurant_name` | `RESTAURANT FADAE RIF` | Nom dans le header et WhatsApp |
+| `restaurant_name` | `DAHAB COFFEE` | Nom dans le header et WhatsApp |
 | `restaurant_subtitle` | `Restaurant Gastronomique` | Sous-titre (contact) |
 | `address` | Adresse complète | Page contact |
 | `hours` | Horaires d'ouverture | Page contact |
 | `phone` | `+212 524 43 21 00` | Page contact (formaté) |
 | `phone_raw` | `+212524432100` | Lien tel: dans le contact |
-| `email` | `contact@fadaerif.ma` | Page contact |
-| `instagram` | `@fadaerif.marrakech` | Page contact |
+| `email` | `contact@dahabcoffee.ma` | Page contact |
+| `instagram` | `@dahabcoffee.marrakech` | Page contact |
 | `wa_number` | `212661234567` | Numéro WhatsApp (sans +) |
 
 ---
@@ -355,7 +355,7 @@ flowchart TD
 
 6. **Créer l'admin user**
    - `Authentication → Users → Add User`
-   - Email : `admin@snackalmadina.com` / Password : `<your-admin-password>`
+   - Email : `admin@dahabcoffee.com` / Password : `<your-admin-password>`
 
 7. **Vérifier** que les tables et le bucket existent
    - `Table Editor` : voir `categories`, `menu_items`, `settings`
@@ -367,7 +367,7 @@ flowchart TD
    npx serve . --listen 3000
    ```
    - Naviguer dans le menu (vérifier les données seed)
-   - Se connecter avec `admin@snackalmadina.com` / `<your-admin-password>`
+   - Se connecter avec `admin@dahabcoffee.com` / `<your-admin-password>`
    - Vérifier le CRUD des plats/catégories
    - Uploader une image de plat
    - Modifier la configuration
@@ -392,5 +392,5 @@ Ces valeurs sont celles de l'instance Supabase configurée. À remplacer par les
 | PAT | `<your-personal-access-token>` |
 | Anon key | `<your-anon-key>` |
 | Service key | `<your-service-role-key>` |
-| Admin email | `admin@snackalmadina.com` |
+| Admin email | `admin@dahabcoffee.com` |
 | Admin password | `<your-admin-password>` |

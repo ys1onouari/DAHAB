@@ -22,20 +22,20 @@
 
 .section-eyebrow {
   font-size: var(--text-xs);
-  letter-spacing: 0.35em;
+  letter-spacing: var(--ls-extreme);
   color: var(--secondary);
   text-transform: uppercase;
   margin-bottom: var(--space-sm);
-  font-weight: 500;
+  font-weight: var(--fw-medium);
 }
 
 .section-title {
-  font-family: 'Playfair Display', serif;
+  font-family: var(--font-heading);
   font-size: var(--text-3xl);
   color: var(--text);
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  line-height: 1.15;
+  font-weight: var(--fw-bold);
+  letter-spacing: var(--ls-wide);
+  line-height: var(--lh-tight);
 }
 
 .section-line {
@@ -123,7 +123,7 @@
 .gold-divider-line {
   flex: 1;
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(199,154,59,0.3), transparent);
+  background: linear-gradient(90deg, transparent, rgba(var(--secondary-rgb),0.3), transparent);
 }
 
 .gold-divider-diamond {
