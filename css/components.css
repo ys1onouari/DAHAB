@@ -731,7 +731,7 @@
   height: 44px;
   border-radius: 50%;
   background: var(--primary-dark);
-  color: var(--accent);
+  color: var(--white);
   border: 1px solid rgba(var(--secondary-rgb),0.25);
   cursor: pointer;
   font-size: var(--text-xl);
