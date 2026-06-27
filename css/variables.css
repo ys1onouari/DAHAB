@@ -7,13 +7,13 @@
 
   /* ===== COULEURS — Brand ===== */
 
-  --primary:         #A86A2A;   /* Brun Caramel */
-  --primary-dark:    #5B3718;
-  --primary-light:   #8B6035;
+  --primary:         #AF916B;   /* Doré Principal */
+  --primary-dark:    #8B6A45;
+  --primary-light:   #C9AE8C;
   --secondary:       #D4A64A;   /* Doré Principal (Premium Gold) */
   --secondary-light: #E6C55A;
-  --accent:          #B8842F;   /* Doré Foncé (Accent Gold) */
-  --accent-dim:      rgba(184, 132, 47, 0.12);
+  --accent:          #8B6A45;   /* Doré Foncé */
+  --accent-dim:      rgba(175,145,107,0.12);
   --white:           #ffffff;
 
   /* backward-compat aliases */
@@ -30,24 +30,24 @@
 
   /* ===== COULEURS — Backgrounds ===== */
 
-  --bg:              #111111;
-  --bg2:             #1E1208;
-  --bg3:             #2A1A0E;
-  --card:            rgba(255, 255, 255, 0.04);
-  --card-hover:      rgba(255, 255, 255, 0.07);
-  --glass:           rgba(17, 17, 17, 0.72);
-  --glass-border:    rgba(212, 166, 74, 0.12);
+  --bg:              #FFFFFF;
+  --bg2:             #F7F5F1;
+  --bg3:             #EFEAE2;
+  --card:            rgba(24,33,36,0.03);
+  --card-hover:      rgba(24,33,36,0.06);
+  --glass:           rgba(255,255,255,0.78);
+  --glass-border:    rgba(175,145,107,0.18);
 
   /* ===== COULEURS — Text ===== */
 
-  --text:            #F8F6F0;
-  --text2:           #EEDDB8;
-  --text3:           #A89070;
+  --text:            #182124;
+  --text2:           #4A4136;
+  --text3:           #6D7375;
 
   /* ===== COULEURS — Status ===== */
 
-  --success:         #3A9D5E;
-  --danger:          #D78873;
+  --success:         #2F8B52;
+  --danger:          #C0392B;
   --warning:         #D4A64A;   /* identique à --secondary — alias sémantique */
 
   /* ===== COULEURS — Borders & Shadows ===== */
@@ -55,27 +55,27 @@
   --border:          rgba(212, 166, 74, 0.08);
   --border-strong:   rgba(212, 166, 74, 0.14);
   --shadow-sm:
-    0 4px 16px rgba(0,0,0,0.25);
+    0 4px 16px rgba(24,33,36,0.25);
   --shadow-md:
-    0 8px 32px rgba(0,0,0,0.40);
+    0 8px 32px rgba(24,33,36,0.40);
   --shadow-lg:
-    0 16px 48px rgba(0,0,0,0.50);
+    0 16px 48px rgba(24,33,36,0.50);
   --shadow-red:      0 0 40px rgba(168, 106, 42, 0.18);
   --shadow-gold:     0 0 40px rgba(212, 166, 74, 0.15);
-  --shadow-review-card: 0 8px 40px rgba(0,0,0,0.25), 0 1px 3px rgba(0,0,0,0.15);
-  --shadow-cart-panel: 8px 0 48px rgba(0,0,0,0.5);
-  --shadow-cart-panel-rtl: -8px 0 48px rgba(0,0,0,0.5);
+  --shadow-review-card: 0 8px 40px rgba(24,33,36,0.10), 0 1px 3px rgba(24,33,36,0.06);
+  --shadow-cart-panel: 8px 0 48px rgba(24,33,36,0.18);
+  --shadow-cart-panel-rtl: -8px 0 48px rgba(24,33,36,0.18);
 
   /* ===== COULEURS — Spéciaux ===== */
 
-  --gradient-primary:    linear-gradient(135deg, #111111, #A86A2A, #D4A64A);
-  --gradient-accent:     linear-gradient(135deg, #D4A64A, #B8842F, #EEDDB8);
-  --gradient-dark:       linear-gradient(180deg, #111111, #1E1208);
+  --gradient-primary:    linear-gradient(135deg, #FFFFFF, #AF916B, #D4A64A);
+  --gradient-accent:     linear-gradient(135deg, #D4A64A, #8B6A45, #EFEAE2);
+  --gradient-dark:       linear-gradient(180deg, #FFFFFF, #F7F5F1);
   --accent-red:      #B11217;   /* Cramoisi vif pour hero/badge/admin-cta */
   --unavailable:     #6D0B0F;   /* Rouge foncé pour badge indisponible */
-  --hero-bg:         #090909;   /* Fond hero plus sombre que --bg */
-  --hero-gradient-start: #0c0909;
-  --hero-gradient-end:   #120a0a;
+  --hero-bg:         #F7F5F1;   /* Fond hero légèrement plus chaud que --bg */
+  --hero-gradient-start: #FFFFFF;
+  --hero-gradient-end:   #F4EEE4;
   --google-stars:    #FFB800;   /* Jaune officiel Google Avis */
   --bg-primary:      var(--bg);
   --text-primary:    var(--text);
@@ -83,17 +83,17 @@
 
   /* ===== COULEURS RGB ===== */
 
-  --primary-rgb:     168,106,42;
-  --accent-rgb:      184,132,47;
+  --primary-rgb:     175,145,107;
+  --accent-rgb:      139,106,69;
   --secondary-rgb:   212,166,74;
-  --success-rgb:     58,157,94;
-  --danger-rgb:      212,85,74;
+  --success-rgb:     47,139,82;
+  --danger-rgb:      192,57,43;
   --muted-rgb:       128,128,128;   /* Gris neutre pour boutons annuler/fermer */
   --accent-red-rgb:  177,18,23;
   --unavailable-rgb: 109,11,15;
   --white-rgb:       255,255,255;
-  --black-rgb:       0,0,0;
-  --hero-bg-rgb:     9,9,9;
+  --black-rgb:       24,33,36;
+  --hero-bg-rgb:     247,245,241;
   --google-stars-rgb: 255,184,0;
 
   /* ===== Z-INDEX ===== */

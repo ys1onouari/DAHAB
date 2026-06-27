@@ -84,7 +84,7 @@
     flex-direction: row;
     padding: 8px 12px;
     border-right: none;
-    border-bottom: 1px solid rgba(var(--white-rgb), 0.08);
+    border-bottom: 1px solid rgba(var(--black-rgb), 0.08);
     overflow-x: auto;
     gap: var(--space-xs);
     -webkit-overflow-scrolling: touch;
@@ -206,7 +206,7 @@
 
   .admin-tbl tr {
     background: var(--card);
-    border: 1px solid rgba(var(--white-rgb), 0.08);
+    border: 1px solid rgba(var(--black-rgb), 0.08);
     border-radius: var(--radius-md);
     padding: 12px;
     margin-bottom: 10px;
