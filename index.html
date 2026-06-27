@@ -15,6 +15,38 @@
 
   <!-- Styles -->
   <link rel="stylesheet" href="css/main.css"/>
+
+  <!-- Debug mode Safari (activation: ?debug=1 dans l'URL) -->
+  <script>
+  (function(){
+    var DEBUG = location.search.indexOf('debug=') !== -1 || localStorage.getItem('dahab_debug') === '1';
+    if (!DEBUG) return;
+    window.__DAHAB_DEBUG = { enabled: true, logs: [], startTime: Date.now() };
+    function log(level, msg) {
+      window.__DAHAB_DEBUG.logs.push({ time: new Date().toISOString(), level: level, msg: msg });
+      while (window.__DAHAB_DEBUG.logs.length > 500) window.__DAHAB_DEBUG.logs.shift();
+      try { localStorage.setItem('dahab_debug_logs', JSON.stringify(window.__DAHAB_DEBUG.logs.slice(-200))); } catch(e){}
+      console.log('[DahabDebug:'+level+']', msg);
+    }
+    log('INIT', 'User-Agent: '+navigator.userAgent);
+    log('INIT', 'Platform: '+navigator.platform+', Vendor: '+navigator.vendor);
+    log('INIT', 'URL: '+location.href);
+    window.onerror = function(msg, source, line, col, err) {
+      log('FATAL', 'msg='+msg+' source='+source+':'+line+':'+col+' stack='+(err && err.stack ? err.stack : 'N/A'));
+      return false;
+    };
+    window.addEventListener('unhandledrejection', function(e) {
+      log('PROMISE', 'reason='+(e.reason ? (e.reason.message || String(e.reason)) : 'unknown'));
+    });
+    window.addEventListener('error', function(e) {
+      var t = e.target;
+      if (t && (t.tagName === 'IMG' || t.tagName === 'SCRIPT' || t.tagName === 'LINK' || t.tagName === 'IFRAME')) {
+        log('RESOURCE', 'tag='+t.tagName+' src='+(t.src || t.href || 'N/A'));
+      }
+    }, true);
+    log('INIT', 'Debug mode actif — utilise Safari Develop pour voir les logs');
+  })();
+  </script>
 </head>
 <body>
 
@@ -110,7 +142,8 @@
     <div class="hero-pattern">
       <div class="hero-video-wrap" id="heroVideoWrap">
         <iframe id="heroVideo" src="https://www.youtube.com/embed/VyFZxsqE3Ic?autoplay=1&loop=1&mute=1&end=32&playlist=VyFZxsqE3Ic"
-          allow="autoplay; encrypted-media" title="Restaurant Background"></iframe>
+          allow="autoplay; encrypted-media; fullscreen" title="Restaurant Background"
+          playsinline webkit-playsinline allowfullscreen></iframe>
         <div class="hero-video-overlay"></div>
       </div>
     </div>

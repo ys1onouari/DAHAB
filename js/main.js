@@ -7,6 +7,9 @@ import { $ } from './helpers.js';
 import { LOCK_KEY } from './constants.js';
 
 document.addEventListener('DOMContentLoaded', async () => {
+  if (window.__DAHAB_DEBUG?.enabled) {
+    import('./debug.js').then(m => m.initDebug()).catch(() => {});
+  }
   console.time('total');
   console.time('i18nReady');
   const earlySettings = loadSettings();
