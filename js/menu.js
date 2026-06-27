@@ -262,7 +262,7 @@ function dishCard(dish) {
   const imgBlock = showImages
     ? `<div class="dish-img-wrap">
         ${dish.image
-          ? `<img src="${dish.image}" alt="${localized(dish.name)}" class="dish-img"/>`
+          ? `<img src="${dish.image}" alt="${localized(dish.name)}" class="dish-img" loading="lazy" width="400" height="300"/>`
           : `<div class="dish-img-placeholder"></div>`}
         ${badges.join('')}
       </div>`

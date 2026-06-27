@@ -186,12 +186,16 @@ async function resizeImage(file, maxWidth) {
       const ctx = canvas.getContext('2d');
       ctx.imageSmoothingQuality = 'high';
       ctx.drawImage(img, 0, 0, w, h);
+      URL.revokeObjectURL(img.src);
       canvas.toBlob((blob) => {
         if (blob) resolve(blob);
         else reject(new Error('Redimensionnement échoué'));
       }, 'image/jpeg', 0.8);
     };
-    img.onerror = reject;
+    img.onerror = () => {
+      URL.revokeObjectURL(img.src);
+      reject(new Error('Image load failed'));
+    };
     img.src = URL.createObjectURL(file);
   });
 }

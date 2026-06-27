@@ -14,9 +14,16 @@ import { validateCategory, validateItem, validateSettings } from './admin-valida
 /* --- Init --- */
 let items = [];
 let cats = [];
+let _adminInitialized = false;
 
 export async function initAdmin() {
   [items, cats] = await Promise.all([getMenuItems(), getCategories()]);
+  if (_adminInitialized) {
+    renderAll();
+    await loadConfig();
+    return;
+  }
+  _adminInitialized = true;
   renderAll();
   bindEvents();
   await loadConfig();
@@ -225,27 +232,33 @@ function catFormHtml(cat) {
 
 /* --- Event binding --- */
 function bindEvents() {
-  const importInput = document.createElement('input');
-  importInput.type = 'file';
-  importInput.accept = '.xlsx,.xls';
-  importInput.style.display = 'none';
-  importInput.id = 'adminXlsxInput';
-  document.body.appendChild(importInput);
-  importInput.addEventListener('change', async () => {
-    if (importInput.files[0]) await importXLSX(importInput.files[0]);
-    importInput.value = '';
-  });
+  let importInput = document.getElementById('adminXlsxInput');
+  if (!importInput) {
+    importInput = document.createElement('input');
+    importInput.type = 'file';
+    importInput.accept = '.xlsx,.xls';
+    importInput.style.display = 'none';
+    importInput.id = 'adminXlsxInput';
+    document.body.appendChild(importInput);
+    importInput.addEventListener('change', async () => {
+      if (importInput.files[0]) await importXLSX(importInput.files[0]);
+      importInput.value = '';
+    });
+  }
 
-  const catImportInput = document.createElement('input');
-  catImportInput.type = 'file';
-  catImportInput.accept = '.xlsx,.xls';
-  catImportInput.style.display = 'none';
-  catImportInput.id = 'adminCatXlsxInput';
-  document.body.appendChild(catImportInput);
-  catImportInput.addEventListener('change', async () => {
-    if (catImportInput.files[0]) await importCatsXLSX(catImportInput.files[0]);
-    catImportInput.value = '';
-  });
+  let catImportInput = document.getElementById('adminCatXlsxInput');
+  if (!catImportInput) {
+    catImportInput = document.createElement('input');
+    catImportInput.type = 'file';
+    catImportInput.accept = '.xlsx,.xls';
+    catImportInput.style.display = 'none';
+    catImportInput.id = 'adminCatXlsxInput';
+    document.body.appendChild(catImportInput);
+    catImportInput.addEventListener('change', async () => {
+      if (catImportInput.files[0]) await importCatsXLSX(catImportInput.files[0]);
+      catImportInput.value = '';
+    });
+  }
 
   document.querySelectorAll('[data-admin-view]').forEach(btn => {
     btn.addEventListener('click', () => {
@@ -344,6 +357,7 @@ function setupItemForm(item) {
   fileInput?.addEventListener('change', () => {
     const preview = document.getElementById('adminPreview');
     if (preview && fileInput.files[0]) {
+      URL.revokeObjectURL(preview.src);
       preview.src = URL.createObjectURL(fileInput.files[0]);
       preview.classList.add('show');
     }

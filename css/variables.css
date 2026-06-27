@@ -186,12 +186,12 @@
 
   /* ===== TRANSITIONS ===== */
 
-  --transition-instant: all 0.2s ease;
-  --transition-fast:    all 0.3s ease;
-  --transition-normal:  all 0.4s ease;
-  --transition-micro:   all 0.25s ease;
-  --transition-smooth:  all 0.35s ease;
-  --transition-panel:   all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-instant: background 0.2s ease, color 0.2s ease, border-color 0.2s ease, transform 0.2s ease, opacity 0.2s ease, box-shadow 0.2s ease;
+  --transition-fast:    background 0.3s ease, color 0.3s ease, border-color 0.3s ease, transform 0.3s ease, opacity 0.3s ease, box-shadow 0.3s ease;
+  --transition-normal:  background 0.4s ease, color 0.4s ease, transform 0.4s ease, opacity 0.4s ease, box-shadow 0.4s ease;
+  --transition-micro:   background 0.25s ease, color 0.25s ease;
+  --transition-smooth:  background 0.35s ease, color 0.35s ease, transform 0.35s ease, opacity 0.35s ease, box-shadow 0.35s ease;
+  --transition-panel:   transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1), background 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 @keyframes shimmer {

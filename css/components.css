@@ -363,7 +363,7 @@
   text-transform: uppercase;
   margin-bottom: var(--space-md);
   font-weight: var(--fw-regular);
-  filter: drop-shadow(0 2px 10px rgba(var(--black-rgb), 0.6));
+  text-shadow: 0 2px 10px rgba(var(--black-rgb), 0.6);
 }
 
 .hero-title {
@@ -377,7 +377,7 @@
   overflow: visible;
   max-width: 100%;
   width: 100%;
-  filter: drop-shadow(0 4px 32px rgba(var(--black-rgb), 0.8));
+  text-shadow: 0 4px 32px rgba(var(--black-rgb), 0.8);
 }
 
 .hero-subtitle {
@@ -389,7 +389,7 @@
   margin-bottom: var(--space-xl);
   font-style: italic;
   max-width: 100%;
-  filter: drop-shadow(0 2px 12px rgba(var(--black-rgb), 0.6));
+  text-shadow: 0 2px 12px rgba(var(--black-rgb), 0.6);
 }
 
 /* ===== Hero Skeleton Loading ===== */
@@ -429,7 +429,7 @@
   margin-bottom: var(--space-2xl);
   line-height: var(--lh-looser);
   max-width: 100%;
-  filter: drop-shadow(0 2px 8px rgba(var(--black-rgb), 0.5));
+  text-shadow: 0 2px 8px rgba(var(--black-rgb), 0.5);
 }
 
 .hero-divider {
@@ -988,7 +988,7 @@
   color: var(--google-stars);
   line-height: 1;
   margin-bottom: 12px;
-  filter: drop-shadow(0 0 8px rgba(var(--google-stars-rgb), 0.25));
+  text-shadow: 0 0 8px rgba(var(--google-stars-rgb), 0.25);
 }
 
 .google-review-score {
