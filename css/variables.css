@@ -10,7 +10,7 @@
   --primary:         #AF916B;   /* Doré Principal */
   --primary-dark:    #8B6A45;
   --primary-light:   #C9AE8C;
-  --secondary:       #D4A64A;   /* Doré Principal (Premium Gold) */
+  --secondary:       #A28E74;   /* Doré Principal (Premium Gold) */
   --secondary-light: #E6C55A;
   --accent:          #8B6A45;   /* Doré Foncé */
   --accent-dim:      rgba(175,145,107,0.12);
@@ -22,7 +22,7 @@
   --gold3:           var(--secondary);
   --gold-dim:        var(--accent-dim);
   --gold-primary:    var(--secondary);
-  --border-gold:     rgba(212, 166, 74, 0.25);
+  --border-gold:     rgba(162, 142, 116, 0.25);
   --fire-orange:     var(--secondary);
   --shadow-glow:     var(--shadow-red);
   --color-spicy:     #C4622D;
@@ -48,12 +48,12 @@
 
   --success:         #2F8B52;
   --danger:          #C0392B;
-  --warning:         #D4A64A;   /* identique à --secondary — alias sémantique */
+  --warning:         #A28E74;   /* identique à --secondary — alias sémantique */
 
   /* ===== COULEURS — Borders & Shadows ===== */
 
-  --border:          rgba(212, 166, 74, 0.08);
-  --border-strong:   rgba(212, 166, 74, 0.14);
+  --border:          rgba(162, 142, 116, 0.08);
+  --border-strong:   rgba(162, 142, 116, 0.14);
   --shadow-sm:
     0 4px 16px rgba(24,33,36,0.25);
   --shadow-md:
@@ -61,15 +61,15 @@
   --shadow-lg:
     0 16px 48px rgba(24,33,36,0.50);
   --shadow-red:      0 0 40px rgba(168, 106, 42, 0.18);
-  --shadow-gold:     0 0 40px rgba(212, 166, 74, 0.15);
+  --shadow-gold:     0 0 40px rgba(162, 142, 116, 0.15);
   --shadow-review-card: 0 8px 40px rgba(24,33,36,0.10), 0 1px 3px rgba(24,33,36,0.06);
   --shadow-cart-panel: 8px 0 48px rgba(24,33,36,0.18);
   --shadow-cart-panel-rtl: -8px 0 48px rgba(24,33,36,0.18);
 
   /* ===== COULEURS — Spéciaux ===== */
 
-  --gradient-primary:    linear-gradient(135deg, #FFFFFF, #AF916B, #D4A64A);
-  --gradient-accent:     linear-gradient(135deg, #D4A64A, #8B6A45, #EFEAE2);
+  --gradient-primary:    linear-gradient(135deg, #FFFFFF, #AF916B, #A28E74);
+  --gradient-accent:     linear-gradient(135deg, #A28E74, #8B6A45, #EFEAE2);
   --gradient-dark:       linear-gradient(180deg, #FFFFFF, #F7F5F1);
   --accent-red:      #B11217;   /* Cramoisi vif pour hero/badge/admin-cta */
   --unavailable:     #6D0B0F;   /* Rouge foncé pour badge indisponible */
@@ -85,7 +85,7 @@
 
   --primary-rgb:     175,145,107;
   --accent-rgb:      139,106,69;
-  --secondary-rgb:   212,166,74;
+  --secondary-rgb:   162,142,116;
   --success-rgb:     47,139,82;
   --danger-rgb:      192,57,43;
   --muted-rgb:       128,128,128;   /* Gris neutre pour boutons annuler/fermer */
