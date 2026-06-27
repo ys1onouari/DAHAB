@@ -760,7 +760,7 @@
   align-items: center;
   justify-content: center;
   gap: var(--space-2xs);
-  background: var(--gradient-primary);
+  background: linear-gradient(135deg, var(--secondary), var(--primary));
   color: var(--white);
   border: none;
   border-radius: var(--radius-full);
