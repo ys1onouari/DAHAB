@@ -1,4 +1,4 @@
-# DAHAB COFFEE — Menu Digital
+﻿# DAHAB COFFEE — Menu Digital
 
 ## Architecture
 
@@ -78,6 +78,8 @@ python -m http.server 8000
 Utiliser l'extension **Live Server**.
 
 ## Compatibilité
+
+- Safari/WebKit guidelines dans docs/SAFARI_GUIDELINES.md — règles anti-crash à respecter avant tout commit CSS/JS
 
 - Chrome / Firefox / Safari / Edge (versions récentes)
 - ES6 modules supportés

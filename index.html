@@ -141,7 +141,7 @@
     <div class="hero-bg"></div>
     <div class="hero-pattern">
       <div class="hero-video-wrap" id="heroVideoWrap">
-        <iframe id="heroVideo" src="https://www.youtube.com/embed/VyFZxsqE3Ic?autoplay=1&loop=1&mute=1&end=32&playlist=VyFZxsqE3Ic"
+        <iframe id="heroVideo" src="https://www.youtube.com/embed/VyFZxsqE3Ic?enablejsapi=1&loop=1&mute=1&end=32&playlist=VyFZxsqE3Ic"
           allow="autoplay; encrypted-media; fullscreen" title="Restaurant Background"
           playsinline webkit-playsinline allowfullscreen></iframe>
         <div class="hero-video-overlay"></div>
@@ -319,6 +319,39 @@
 <!-- Scripts (modules ES6 — nécessite un serveur HTTP local) -->
 <script type="module" src="js/main.js"></script>
 
+<script src="https://www.youtube.com/iframe_api" defer></script>
+
+<script>
+let _ytReady = false;
+let _ytPlayer = null;
+
+function onYouTubeIframeAPIReady() {
+  if (_ytReady) return;
+  _ytReady = true;
+  _ytPlayer = new YT.Player('heroVideo', {
+    events: {
+      onReady: function(e) {
+        e.target.mute();
+        e.target.playVideo();
+      },
+      onStateChange: function(e) {
+        if (e.data === YT.PlayerState.ENDED) {
+          e.target.seekTo(0);
+          e.target.playVideo();
+        }
+      },
+      onError: function() {
+        // Fallback silencieux si la vidéo ne peut pas jouer
+      }
+    }
+  });
+}
+window.onYouTubeIframeAPIReady = onYouTubeIframeAPIReady;
+
+if (window.YT && window.YT.Player) {
+  onYouTubeIframeAPIReady();
+}
+</script>
 
 </body>
 </html>
